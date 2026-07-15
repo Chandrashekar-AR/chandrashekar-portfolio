@@ -336,7 +336,7 @@ const STACK_LEVELS: StackLevel[] = [
       { name: 'Fal AI', icon: FalAIIcon, glowClass: 'hover:border-[#FA1F75]/50 hover:shadow-[0_0_15px_rgba(250,31,117,0.25)]' },
       { name: 'Higgsfield AI', icon: HiggsfieldIcon, glowClass: 'hover:border-[#8DE83F]/50 hover:shadow-[0_0_15px_rgba(141,232,63,0.25)]' },
       { name: 'Runway', icon: RunwayIcon, glowClass: 'hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]' },
-      { name: 'ComfyUI', icon: ComfyUIIcon, glowClass: 'hover:border-[#FBBF24]/50 hover:shadow-[0_0_15px_rgba(251,191,36,0.25)]', isLearning: true },
+      { name: 'Comfy UI', icon: ComfyUIIcon, glowClass: 'hover:border-[#FBBF24]/50 hover:shadow-[0_0_15px_rgba(251,191,36,0.25)]', isLearning: true },
     ],
   },
   {
@@ -355,10 +355,10 @@ const STACK_LEVELS: StackLevel[] = [
     title: 'Video Generation',
     icon: VideoCategoryIcon,
     tools: [
-      { name: 'Kling', icon: KlingIcon, glowClass: 'hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]' },
-      { name: 'Veo', icon: VeoIcon, glowClass: 'hover:border-[#4285F4]/40 hover:shadow-[0_0_15px_rgba(66,133,244,0.2)]' },
+      { name: 'Kling V3', icon: KlingIcon, glowClass: 'hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]' },
+      { name: 'Veo 3.1', icon: VeoIcon, glowClass: 'hover:border-[#4285F4]/40 hover:shadow-[0_0_15px_rgba(66,133,244,0.2)]' },
       { name: 'Gen-4 Turbo', icon: Gen4TurboIcon, glowClass: 'hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]' },
-      { name: 'Seedance', icon: SeedanceIcon, glowClass: 'hover:border-[#3B82F6]/50 hover:shadow-[0_0_15px_rgba(59,130,246,0.25)]' },
+      { name: 'Seedance 2.0', icon: SeedanceIcon, glowClass: 'hover:border-[#3B82F6]/50 hover:shadow-[0_0_15px_rgba(59,130,246,0.25)]' },
     ],
   },
   {
@@ -378,8 +378,8 @@ const STACK_LEVELS: StackLevel[] = [
     icon: AudioCategoryIcon,
     tools: [
       { name: 'Elevenlabs', icon: ElevenlabsIcon, glowClass: 'hover:border-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]' },
-      { name: 'Premiere Pro', icon: PremiereProIcon, glowClass: 'hover:border-[#9090FF]/50 hover:shadow-[0_0_15px_rgba(144,144,255,0.25)]', isLearning: true },
-      { name: 'VN Editor', icon: VNEditorIcon, glowClass: 'hover:border-[#FFFFFF]/40 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]' },
+      { name: 'Adobe Premiere Pro', icon: PremiereProIcon, glowClass: 'hover:border-[#9090FF]/50 hover:shadow-[0_0_15px_rgba(144,144,255,0.25)]', isLearning: true },
+      { name: 'VN Video Editor', icon: VNEditorIcon, glowClass: 'hover:border-[#FFFFFF]/40 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]' },
       { name: 'DaVinci Resolve', icon: DaVinciResolveIcon, glowClass: 'hover:border-[#EF4444]/40 hover:shadow-[0_0_15px_rgba(239,68,68,0.2)]' },
     ],
   },
