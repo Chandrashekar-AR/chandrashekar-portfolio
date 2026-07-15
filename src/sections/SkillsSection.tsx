@@ -7,7 +7,6 @@ import falNewLogo from '../assets/fal_new.png'
 import higgsfieldNewLogo from '../assets/higgsfield_new.png'
 import runwayNewLogo from '../assets/runway_new.png'
 import comfyNewLogo from '../assets/comfy_new.png'
-import gptImageNewLogo from '../assets/gpt_image_new.png'
 import midjourneyNewLogo from '../assets/midjourney_new.png'
 import nanobananaNewLogo from '../assets/nanobanana_new.png'
 import klingNewLogo from '../assets/kling_new.png'
@@ -405,7 +404,7 @@ export default function SkillsSection() {
 
         {/* Row 1: Levels 01 - 04 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-{STACK_LEVELS.slice(0, 4).map((lvl, index) => {
+          {STACK_LEVELS.slice(0, 4).map((lvl, index) => {
             const HeaderIcon = lvl.icon
             return (
               <FadeIn key={lvl.levelNum} delay={index * 0.1} y={40} className="h-full">
