@@ -79,7 +79,13 @@ export default function ContactSection() {
           <div className="text-center mb-16 sm:mb-20 md:mb-28">
             <h2
               className="hero-heading font-black uppercase leading-none"
-              style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+              style={{
+                fontSize: 'clamp(3rem, 12vw, 160px)',
+                background: 'linear-gradient(180deg, #FEFCE8 0%, #FEF9C3 25%, #FDE047 50%, #FBBF24 75%, #F59E0B 100%)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent',
+              }}
             >
               Transmit
             </h2>

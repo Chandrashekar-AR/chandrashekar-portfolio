@@ -396,7 +396,7 @@ export default function SkillsSection() {
         <FadeIn delay={0} y={40}>
           <h2
             className="hero-heading font-black uppercase text-center mb-16 sm:mb-20 md:mb-28 leading-none"
-            style={{ fontSize: 'clamp(1.75rem, 5.5vw, 80px)' }}
+            style={{ fontSize: 'clamp(1.75rem, 5.5vw, 80px)', background: 'linear-gradient(180deg, #FEFCE8 0%, #FEF9C3 25%, #FDE047 50%, #FBBF24 75%, #F59E0B 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}
           >
             My Creative Suite
           </h2>
