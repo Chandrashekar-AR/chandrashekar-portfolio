@@ -67,7 +67,7 @@ export default function MarqueeSection() {
               key={`r1-${i}`}
               src={url}
               alt=""
-              className="w-[420px] h-[270px] rounded-2xl object-cover flex-shrink-0"
+              className="w-[420px] h-[560px] rounded-2xl object-cover flex-shrink-0"
               loading="lazy"
             />
           ))}
@@ -86,7 +86,7 @@ export default function MarqueeSection() {
               key={`r2-${i}`}
               src={url}
               alt=""
-              className="w-[420px] h-[270px] rounded-2xl object-cover flex-shrink-0"
+              className="w-[420px] h-[560px] rounded-2xl object-cover flex-shrink-0"
               loading="lazy"
             />
           ))}
