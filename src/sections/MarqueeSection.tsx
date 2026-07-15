@@ -26,7 +26,18 @@ const ALL_IMAGES = [
 ]
 
 const ROW1_IMAGES = ALL_IMAGES.slice(0, 11)
-const ROW2_IMAGES = ALL_IMAGES.slice(11)
+const ROW2_IMAGES = [
+  ...ALL_IMAGES.slice(11),
+  ...ALL_IMAGES.slice(11),
+  ...ALL_IMAGES.slice(11),
+  ...ALL_IMAGES.slice(11),
+  'https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif',
+  'https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif',
+  'https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif',
+  'https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif',
+  'https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif',
+  'https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif',
+]
 const CARD_WIDTH = 420
 const GAP = 12
 const ROW_WIDTH = (CARD_WIDTH + GAP) * 11
@@ -54,24 +65,27 @@ function MarqueeRow({
   images,
   direction,
   paused,
+  initialOffset = 0,
 }: {
   images: string[]
   direction: 'left' | 'right'
   paused: boolean
+  initialOffset?: number
 }) {
   const controls = useAnimation()
   const distance = direction === 'left' ? -ROW_WIDTH : ROW_WIDTH
 
   useEffect(() => {
+    controls.set({ x: initialOffset })
+
     const animate = async () => {
       while (true) {
         if (!paused) {
           await controls.start({
-            x: distance,
+            x: initialOffset + distance,
             transition: { duration: 40, ease: 'linear' },
           })
-          // Instant reset - seamless loop
-          controls.set({ x: 0 })
+          controls.set({ x: initialOffset })
         } else {
           await new Promise(r => setTimeout(r, 100))
         }
@@ -79,7 +93,7 @@ function MarqueeRow({
     }
     animate()
     return () => controls.stop()
-  }, [controls, direction, paused])
+  }, [controls, direction, paused, initialOffset, distance])
 
   const triple = [...images, ...images, ...images]
 
@@ -87,7 +101,7 @@ function MarqueeRow({
     <motion.div
       animate={controls}
       className="flex gap-3 will-change-transform"
-      style={{ width: `${ROW_WIDTH * 3}px`, x: 0 }}
+      style={{ width: `${ROW_WIDTH * 3}px`, x: initialOffset }}
     >
       {triple.map((url, i) => (
         <MarqueeCard key={`${direction}-${i}`} src={url} index={i} row={direction === 'left' ? 1 : 2} />
@@ -109,11 +123,12 @@ export default function MarqueeSection() {
           paused={paused}
         />
 
-        {/* Row 2 — moves RIGHT continuously, seamless loop */}
+        {/* Row 2 — moves RIGHT continuously, seamless loop, starts at 46th card */}
         <MarqueeRow
           images={ROW2_IMAGES}
           direction="right"
           paused={paused}
+          initialOffset={-19440}
         />
       </div>
     </section>
