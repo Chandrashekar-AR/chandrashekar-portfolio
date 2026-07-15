@@ -1,4 +1,5 @@
-import { useRef, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { motion, useAnimation } from 'framer-motion'
 
 const ALL_IMAGES = [
   'https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif',
@@ -26,71 +27,94 @@ const ALL_IMAGES = [
 
 const ROW1_IMAGES = ALL_IMAGES.slice(0, 11)
 const ROW2_IMAGES = ALL_IMAGES.slice(11)
+const CARD_WIDTH = 420
+const GAP = 12
+const ROW_WIDTH = (CARD_WIDTH + GAP) * 11
 
-export default function MarqueeSection() {
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const [offset, setOffset] = useState(0)
+function MarqueeCard({ src, index, row }: { src: string; index: number; row: number }) {
+  return (
+    <motion.img
+      src={src}
+      alt=""
+      className="w-[420px] h-[560px] rounded-2xl object-cover flex-shrink-0"
+      loading="lazy"
+      style={{ zIndex: 1 }}
+      whileHover={{
+        scale: 1.15,
+        y: -40,
+        zIndex: 100,
+        boxShadow: '0 40px 80px -20px rgba(0,0,0,0.6)',
+        transition: { duration: 0.3, ease: 'easeOut' },
+      }}
+    />
+  )
+}
+
+function MarqueeRow({
+  images,
+  direction,
+  paused,
+}: {
+  images: string[]
+  direction: 'left' | 'right'
+  paused: boolean
+}) {
+  const controls = useAnimation()
+  const distance = direction === 'left' ? -ROW_WIDTH : ROW_WIDTH
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return
-      const rect = sectionRef.current.getBoundingClientRect()
-      const sectionTop = rect.top + window.scrollY
-      const rawOffset = (window.scrollY - sectionTop + window.innerHeight) * 0.3
-      setOffset(rawOffset)
+    const animate = async () => {
+      while (true) {
+        if (!paused) {
+          await controls.start({
+            x: distance,
+            transition: { duration: 40, ease: 'linear' },
+          })
+          // Instant reset - seamless loop
+          controls.set({ x: 0 })
+        } else {
+          await new Promise(r => setTimeout(r, 100))
+        }
+      }
     }
+    animate()
+    return () => controls.stop()
+  }, [controls, direction, paused])
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const row1Triple = [...ROW1_IMAGES, ...ROW1_IMAGES, ...ROW1_IMAGES]
-  const row2Triple = [...ROW2_IMAGES, ...ROW2_IMAGES, ...ROW2_IMAGES]
+  const triple = [...images, ...images, ...images]
 
   return (
-    <section
-      ref={sectionRef}
-      className="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden"
+    <motion.div
+      animate={controls}
+      className="flex gap-3 will-change-transform"
+      style={{ width: `${ROW_WIDTH * 3}px`, x: 0 }}
     >
-      <div className="flex flex-col gap-3">
-        {/* Row 1 — moves RIGHT on scroll */}
-        <div
-          className="flex gap-3"
-          style={{
-            transform: `translateX(${offset - 200}px)`,
-            willChange: 'transform',
-          }}
-        >
-          {row1Triple.map((url, i) => (
-            <img
-              key={`r1-${i}`}
-              src={url}
-              alt=""
-              className="w-[420px] h-[560px] rounded-2xl object-cover flex-shrink-0"
-              loading="lazy"
-            />
-          ))}
-        </div>
+      {triple.map((url, i) => (
+        <MarqueeCard key={`${direction}-${i}`} src={url} index={i} row={direction === 'left' ? 1 : 2} />
+      ))}
+    </motion.div>
+  )
+}
 
-        {/* Row 2 — moves LEFT on scroll */}
-        <div
-          className="flex gap-3"
-          style={{
-            transform: `translateX(${-(offset - 200)}px)`,
-            willChange: 'transform',
-          }}
-        >
-          {row2Triple.map((url, i) => (
-            <img
-              key={`r2-${i}`}
-              src={url}
-              alt=""
-              className="w-[420px] h-[560px] rounded-2xl object-cover flex-shrink-0"
-              loading="lazy"
-            />
-          ))}
-        </div>
+export default function MarqueeSection() {
+  const [paused, setPaused] = useState(false)
+
+  return (
+    <section className="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden">
+      <div className="flex flex-col gap-3">
+        {/* Row 1 — moves LEFT continuously, seamless loop */}
+        <MarqueeRow
+          images={ROW1_IMAGES}
+          direction="left"
+          paused={paused}
+        />
+
+        {/* Row 2 — moves RIGHT continuously, seamless loop */}
+        <MarqueeRow
+          images={ROW2_IMAGES}
+          direction="right"
+          paused={paused}
+        />
       </div>
     </section>
   )
