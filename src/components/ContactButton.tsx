@@ -5,9 +5,9 @@ interface ContactButtonProps {
 export default function ContactButton({ className = '' }: ContactButtonProps) {
   return (
     <button
-      className={`rounded-full text-white font-medium uppercase tracking-widest
-        px-8 py-3 sm:px-20 sm:py-3.5 md:px-8 md:py-4
-        text-xs sm:text-sm md:text-base
+      className={`rounded-full text-white font-bold uppercase tracking-widest border border-transparent
+        px-6 py-3.5 sm:px-6 sm:py-3.5 md:px-8 md:py-3.5
+        text-[9px] min-[360px]:text-[10px] sm:text-[11px] md:text-xs
         cursor-pointer transition-transform duration-200 hover:scale-105
         ${className}`}
       style={{
@@ -21,3 +21,4 @@ export default function ContactButton({ className = '' }: ContactButtonProps) {
     </button>
   )
 }
+
