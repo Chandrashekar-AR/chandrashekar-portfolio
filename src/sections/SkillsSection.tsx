@@ -355,7 +355,7 @@ const STACK_LEVELS: StackLevel[] = [
     title: 'Video Generation',
     icon: VideoCategoryIcon,
     tools: [
-      { name: 'Kling V3', icon: KlingIcon, glowClass: 'hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]' },
+      { name: 'Kling V3', icon: KlingIcon, glowClass: 'hover:border-[#00D4FF]/50 hover:shadow-[0_0_25px_rgba(0,212,255,0.5),_0_0_0_2px_rgba(0,212,255,0.7)]' },
       { name: 'Veo 3.1', icon: VeoIcon, glowClass: 'hover:border-[#4285F4]/40 hover:shadow-[0_0_15px_rgba(66,133,244,0.2)]' },
       { name: 'Gen-4 Turbo', icon: Gen4TurboIcon, glowClass: 'hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]' },
       { name: 'Seedance 2.0', icon: SeedanceIcon, glowClass: 'hover:border-[#3B82F6]/50 hover:shadow-[0_0_15px_rgba(59,130,246,0.25)]' },
@@ -414,12 +414,12 @@ export default function SkillsSection() {
                     y: -20,
                     rotateX: 4,
                     rotateY: -3,
-                    boxShadow: '0 50px 100px rgba(0,0,0,0.6), 0 0 80px rgba(215,226,234,0.15), 0 0 0 1px rgba(215,226,234,0.3)',
-                    borderColor: '#D7E2EA'
+                    boxShadow: '0 50px 100px rgba(0,0,0,0.6), 0 0 80px rgba(253,224,71,0.4), 0 0 0 2px rgba(253,224,71,0.6)',
+                    borderColor: '#FDE047'
                   }}
                   whileTap={{ scale: 1.03 }}
                   transition={{ type: 'tween', duration: 0.12, ease: [0.33, 1, 0.68, 1] }}
-                  className="bg-gradient-to-b from-[#111111] to-[#070707] border border-[#1f1f1f] rounded-[24px] p-6 flex flex-col h-full hover:border-[#D7E2EA]/60 transition-all duration-500 shadow-2xl relative overflow-hidden group perspective-1000"
+                  className="bg-gradient-to-b from-[#111111] to-[#070707] border border-[#1f1f1f] rounded-[24px] p-6 flex flex-col h-full hover:border-[#FDE047]/60 transition-all duration-500 shadow-2xl relative overflow-hidden group perspective-1000"
                 >
                   {/* Card top banner header */}
                   <div className="flex items-center justify-between mb-4">
@@ -504,12 +504,12 @@ export default function SkillsSection() {
                     y: -20,
                     rotateX: 4,
                     rotateY: -3,
-                    boxShadow: '0 50px 100px rgba(0,0,0,0.6), 0 0 80px rgba(215,226,234,0.15), 0 0 0 1px rgba(215,226,234,0.3)',
-                    borderColor: '#D7E2EA'
+                    boxShadow: '0 50px 100px rgba(0,0,0,0.6), 0 0 80px rgba(253,224,71,0.4), 0 0 0 2px rgba(253,224,71,0.6)',
+                    borderColor: '#FDE047'
                   }}
                   whileTap={{ scale: 1.03 }}
                   transition={{ type: 'tween', duration: 0.12, ease: [0.33, 1, 0.68, 1] }}
-                  className="bg-gradient-to-b from-[#111111] to-[#070707] border border-[#1f1f1f] rounded-[24px] p-6 flex flex-col h-full hover:border-[#D7E2EA]/60 transition-all duration-500 shadow-2xl relative overflow-hidden group perspective-1000"
+                  className="bg-gradient-to-b from-[#111111] to-[#070707] border border-[#1f1f1f] rounded-[24px] p-6 flex flex-col h-full hover:border-[#FDE047]/60 transition-all duration-500 shadow-2xl relative overflow-hidden group perspective-1000"
                 >
                   {/* Card top banner header */}
                   <div className="flex items-center justify-between mb-4">
