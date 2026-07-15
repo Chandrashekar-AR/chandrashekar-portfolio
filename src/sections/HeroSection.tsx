@@ -17,7 +17,7 @@ export default function HeroSection() {
         </div>
 
         {/* Hero heading */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full z-0 select-none pointer-events-none">
+        <div className="absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 w-full z-0 select-none pointer-events-none">
           <FadeIn delay={0.15} y={40}>
             <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-center text-[5vw] min-[360px]:text-[5.2vw] sm:text-[5.5vw] md:text-[5.8vw] lg:text-[6.2vw]">
               Hi, i&apos;m Chandrashekar AR
