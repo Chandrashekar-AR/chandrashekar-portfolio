@@ -101,37 +101,35 @@ export default function ContactSection() {
                 position="bottom"
                 delay={150}
               >
-                <Magnet strength={4} padding={100}>
-                  <button
-                    onClick={handleCopy}
-                    className="group relative inline-flex flex-col items-center gap-2 px-6 py-4 bg-transparent border-0 hover:border-0 rounded-[16px] transition-all duration-300 cursor-pointer select-none"
-                  >
-                    <span className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-[#D7E2EA] tracking-wide transition-all duration-300" style={{ fontFamily: 'Impact, "Haettenschweiler", "Franklin Gothic Bold", sans-serif' }}>
-                      chandrashekarar42@gmail.com
-                    </span>
-                    {!copied && (
-                      <p className={`
-                        text-[10px] font-mono uppercase tracking-widest
-                        border rounded-[8px] px-4 py-1.5 backdrop-blur-sm transition-all duration-300
-                        cursor-pointer select-none whitespace-nowrap
-                        opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto
-                        text-[#FBBF24]/80 border-[#FBBF24]/30 bg-[#FBBF24]/5 hover:bg-[#FBBF24]/15 hover:border-[#FBBF24]/60 hover:text-[#FBBF24]
-                      `}
-                      >
-                        Copy email
-                      </p>
-                    )}
-                    {copied && (
-                      <p className="text-[10px] font-mono uppercase tracking-widest
-                        border rounded-[8px] px-4 py-1.5 backdrop-blur-sm transition-all duration-300
-                        cursor-default select-none whitespace-nowrap
-                        text-[#00FF88] border-[#00FF88]/60 bg-[#00FF88]/10 shadow-[0_0_15px_rgba(0,255,136,0.35)] shadow-[#00FF88]/25
-                      ">
-                        Copied!
-                      </p>
-                    )}
-                  </button>
-                </Magnet>
+                <button
+                  onClick={handleCopy}
+                  className="group relative inline-flex flex-col items-center gap-2 px-6 py-4 bg-transparent border-0 hover:border-0 rounded-[16px] transition-all duration-300 cursor-pointer select-none"
+                >
+                  <span className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-[#D7E2EA] tracking-wide transition-all duration-300" style={{ fontFamily: 'Impact, "Haettenschweiler", "Franklin Gothic Bold", sans-serif' }}>
+                    chandrashekarar42@gmail.com
+                  </span>
+                  {!copied && (
+                    <p className={`
+                      text-[10px] font-mono uppercase tracking-widest
+                      border rounded-[8px] px-4 py-1.5 backdrop-blur-sm transition-all duration-300
+                      cursor-pointer select-none whitespace-nowrap
+                      opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto
+                      text-[#FBBF24]/80 border-[#FBBF24]/30 bg-[#FBBF24]/5 hover:bg-[#FBBF24]/15 hover:border-[#FBBF24]/60 hover:text-[#FBBF24]
+                    `}
+                    >
+                      Copy email
+                    </p>
+                  )}
+                  {copied && (
+                    <p className="text-[10px] font-mono uppercase tracking-widest
+                      border rounded-[8px] px-4 py-1.5 backdrop-blur-sm transition-all duration-300
+                      cursor-default select-none whitespace-nowrap
+                      text-[#00FF88] border-[#00FF88]/60 bg-[#00FF88]/10 shadow-[0_0_15px_rgba(0,255,136,0.35)] shadow-[#00FF88]/25
+                    ">
+                      Copied!
+                    </p>
+                  )}
+                </button>
               </Tooltip>
             </div>
           </div>
