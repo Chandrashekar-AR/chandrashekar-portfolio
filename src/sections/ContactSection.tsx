@@ -100,7 +100,7 @@ export default function ContactSection() {
             </div>
 
             {/* Email Display */}
-            <div className="mt-16 flex flex-col items-center gap-2">
+            <div className="mt-16 flex flex-col items-center gap-1">
               <Tooltip
                 content={
                   <div className="flex items-center gap-2 text-[#D7E2EA]/70">
@@ -116,7 +116,7 @@ export default function ContactSection() {
               >
                 <button
                   onClick={handleCopy}
-                  className="group relative inline-flex flex-col items-center gap-1 px-6 py-4 bg-transparent border-0 hover:border-0 rounded-[16px] transition-all duration-300 cursor-pointer select-none"
+                  className="group relative inline-flex items-center gap-1 px-6 py-4 bg-transparent border-0 hover:border-0 rounded-[16px] transition-all duration-300 cursor-pointer select-none"
                 >
                   <span
                     className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-wide transition-all duration-300 group-hover:scale-[1.1] relative"
@@ -154,6 +154,7 @@ export default function ContactSection() {
                       opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto
                       text-[#FBBF24]/90 border-[#FBBF24]/50 bg-[#FBBF24]/10
                       hover:bg-[#FBBF24]/20 hover:border-[#FBBF24]/80 hover:text-[#FBBF24]
+                      absolute bottom-[-32px] left-auto right-0
                     `}
                     >
                       Click to Copy email
@@ -164,6 +165,7 @@ export default function ContactSection() {
                       border rounded-[8px] px-4 py-1.5 backdrop-blur-sm transition-all duration-300
                       cursor-default select-none whitespace-nowrap
                       text-[#00FF88] border-[#00FF88]/60 bg-[#00FF88]/10 shadow-[0_0_15px_rgba(0,255,136,0.35)] shadow-[#00FF88]/25
+                      absolute bottom-[-32px] left-auto right-0
                     ">
                       Copied!
                     </p>
@@ -181,7 +183,7 @@ export default function ContactSection() {
           </h3>
 
           <div className="flex flex-wrap justify-center items-center gap-3 w-full">
-            <div className="social-links-container flex items-center gap-3 px-6 py-3 rounded-[16px] border border-[#FBBF24]/30 bg-[#0C0C0C]">
+            <div className="social-links-container flex items-center gap-3 px-6 py-3 rounded-[16px] border-2 border-[#FBBF24]/40 bg-[#0C0C0C] shadow-[0_0_20px_rgba(251,191,36,0.3)] shadow-[#FBBF24]/20">
               {CONTACT_LINKS.map((link, index) => (
                 <React.Fragment key={link.id}>
                   <a
@@ -192,11 +194,11 @@ export default function ContactSection() {
                     className={`
                       social-link flex items-center gap-2 px-3 py-2 rounded-[10px] 
                       transition-all duration-300 select-none no-underline
-                      ${link.id === 'contact-linkedin' 
+                      ${link.id === 'contact-linkedin'
                         ? 'hover:bg-[#0A66C2]/20 hover:border-[#0A66C2]/50 hover:shadow-[0_0_25px_rgba(10,102,194,0.5)]'
                         : link.id === 'contact-github'
-                        ? 'hover:bg-[#FFFFFF]/10 hover:border-[#FFFFFF]/30 hover:shadow-[0_0_25px_rgba(255,255,255,0.3)]'
-                        : 'hover:bg-[#E1306C]/20 hover:border-[#E1306C]/50 hover:shadow-[0_0_25px_rgba(225,48,108,0.5)]'
+                          ? 'hover:bg-[#FFFFFF]/10 hover:border-[#FFFFFF]/30 hover:shadow-[0_0_25px_rgba(255,255,255,0.3)]'
+                          : 'hover:bg-[#E1306C]/20 hover:border-[#E1306C]/50 hover:shadow-[0_0_25px_rgba(225,48,108,0.5)]'
                       }
                     `}
                   >
@@ -206,8 +208,8 @@ export default function ContactSection() {
                       ${link.id === 'contact-linkedin'
                         ? 'text-[#0A66C2]/60 hover:text-[#0A66C2] hover:border-[#0A66C2]/50 hover:shadow-[0_0_20px_rgba(10,102,194,0.6)]'
                         : link.id === 'contact-github'
-                        ? 'text-[#D7E2EA]/60 hover:text-[#FFFFFF] hover:border-[#FFFFFF]/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]'
-                        : 'text-[#E1306C]/60 hover:text-[#E1306C] hover:border-[#E1306C]/50 hover:shadow-[0_0_20px_rgba(225,48,108,0.6)]'
+                          ? 'text-[#D7E2EA]/60 hover:text-[#FFFFFF] hover:border-[#FFFFFF]/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]'
+                          : 'text-[#E1306C]/60 hover:text-[#E1306C] hover:border-[#E1306C]/50 hover:shadow-[0_0_20px_rgba(225,48,108,0.6)]'
                       }
                     `}>
                       {link.icon}
