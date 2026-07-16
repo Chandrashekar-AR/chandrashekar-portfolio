@@ -181,7 +181,7 @@ export default function ContactSection() {
           </h3>
 
           <div className="flex flex-wrap justify-center items-center gap-3 w-full">
-            <div className="flex items-center gap-3 px-6 py-3 rounded-[16px] border border-[#FBBF24]/30 bg-[#0C0C0C]">
+            <div className="social-links-container flex items-center gap-3 px-6 py-3 rounded-[16px] border border-[#FBBF24]/30 bg-[#0C0C0C]">
               {CONTACT_LINKS.map((link, index) => (
                 <React.Fragment key={link.id}>
                   <a
@@ -190,13 +190,13 @@ export default function ContactSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`
-                      flex items-center gap-2 px-3 py-2 rounded-[10px] 
-                      transition-all duration-300 group select-none no-underline
+                      social-link flex items-center gap-2 px-3 py-2 rounded-[10px] 
+                      transition-all duration-300 select-none no-underline
                       ${link.id === 'contact-linkedin' 
-                        ? 'hover:bg-[#0A66C2]/20 hover:border-[#0A66C2]/50 hover:shadow-[0_0_20px_rgba(10,102,194,0.4)] hover:scale-[1.05]'
+                        ? 'hover:bg-[#0A66C2]/20 hover:border-[#0A66C2]/50 hover:shadow-[0_0_25px_rgba(10,102,194,0.5)]'
                         : link.id === 'contact-github'
-                        ? 'hover:bg-[#FFFFFF]/10 hover:border-[#FFFFFF]/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-[1.05]'
-                        : 'hover:bg-[#E1306C]/20 hover:border-[#E1306C]/50 hover:shadow-[0_0_20px_rgba(225,48,108,0.4)] hover:scale-[1.05]'
+                        ? 'hover:bg-[#FFFFFF]/10 hover:border-[#FFFFFF]/30 hover:shadow-[0_0_25px_rgba(255,255,255,0.3)]'
+                        : 'hover:bg-[#E1306C]/20 hover:border-[#E1306C]/50 hover:shadow-[0_0_25px_rgba(225,48,108,0.5)]'
                       }
                     `}
                   >
@@ -204,10 +204,10 @@ export default function ContactSection() {
                       w-8 h-8 rounded-lg border border-[#D7E2EA]/10 bg-[#0c0c0c] 
                       flex items-center justify-center transition-all duration-300 flex-shrink-0
                       ${link.id === 'contact-linkedin'
-                        ? 'text-[#0A66C2]/60 group-hover:text-[#0A66C2] group-hover:border-[#0A66C2]/50 group-hover:shadow-[0_0_15px_rgba(10,102,194,0.5)]'
+                        ? 'text-[#0A66C2]/60 hover:text-[#0A66C2] hover:border-[#0A66C2]/50 hover:shadow-[0_0_20px_rgba(10,102,194,0.6)]'
                         : link.id === 'contact-github'
-                        ? 'text-[#D7E2EA]/60 group-hover:text-[#FFFFFF] group-hover:border-[#FFFFFF]/50 group-hover:shadow-[0_0_15px_rgba(255,255,255,0.3)]'
-                        : 'text-[#E1306C]/60 group-hover:text-[#E1306C] group-hover:border-[#E1306C]/50 group-hover:shadow-[0_0_15px_rgba(225,48,108,0.5)]'
+                        ? 'text-[#D7E2EA]/60 hover:text-[#FFFFFF] hover:border-[#FFFFFF]/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]'
+                        : 'text-[#E1306C]/60 hover:text-[#E1306C] hover:border-[#E1306C]/50 hover:shadow-[0_0_20px_rgba(225,48,108,0.6)]'
                       }
                     `}>
                       {link.icon}
