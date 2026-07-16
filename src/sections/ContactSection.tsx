@@ -154,7 +154,7 @@ export default function ContactSection() {
                       opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto
                       text-[#FBBF24]/90 border-[#FBBF24]/50 bg-[#FBBF24]/10
                       hover:bg-[#FBBF24]/20 hover:border-[#FBBF24]/80 hover:text-[#FBBF24]
-                      absolute bottom-[-32px] left-auto right-0
+                      absolute bottom-[-32px] left-1/2 -translate-x-1/2
                     `}
                     >
                       Click to Copy email
@@ -165,7 +165,7 @@ export default function ContactSection() {
                       border rounded-[8px] px-4 py-1.5 backdrop-blur-sm transition-all duration-300
                       cursor-default select-none whitespace-nowrap
                       text-[#00FF88] border-[#00FF88]/60 bg-[#00FF88]/10 shadow-[0_0_15px_rgba(0,255,136,0.35)] shadow-[#00FF88]/25
-                      absolute bottom-[-32px] left-auto right-0
+                      absolute bottom-[-32px] left-1/2 -translate-x-1/2
                     ">
                       Copied!
                     </p>
@@ -177,7 +177,7 @@ export default function ContactSection() {
         </FadeIn>
 
         {/* Contact Channels - Only 3 profiles */}
-        <FadeIn delay={0.15} y={30} className="flex flex-col gap-6 w-full max-w-4xl mx-auto items-center">
+        <FadeIn delay={0.15} y={30} className="flex flex-col gap-6 w-full max-w-4xl mx-auto items-center -mt-8">
           <h3 className="text-[10px] font-mono tracking-widest text-[#D7E2EA]/40 uppercase mb-2 text-center">
             Let's connect
           </h3>
