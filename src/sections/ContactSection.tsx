@@ -101,13 +101,22 @@ export default function ContactSection() {
                 position="bottom"
                 delay={150}
               >
-                <button
-                  onClick={handleCopy}
-                  className="group relative inline-flex flex-col items-center gap-2 px-6 py-4 bg-transparent border-0 hover:border-0 rounded-[16px] transition-all duration-300 cursor-pointer select-none"
-                >
-                  <span className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-[#D7E2EA] tracking-wide transition-all duration-300" style={{ fontFamily: 'Impact, "Haettenschweiler", "Franklin Gothic Bold", sans-serif' }}>
-                    chandrashekarar42@gmail.com
-                  </span>
+<button
+                    onClick={handleCopy}
+                    className="group relative inline-flex flex-col items-center gap-2 px-6 py-4 bg-transparent border-0 hover:border-0 rounded-[16px] transition-all duration-300 cursor-pointer select-none"
+                  >
+<span
+                      className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-wide transition-all duration-300 group-hover:scale-[1.02] group-hover:drop-shadow-[0_0_30px_rgba(187,204,215,0.4)] group-hover:drop-shadow-[0_8px_20px_rgba(187,204,215,0.2)]"
+                      style={{
+                        fontFamily: 'Impact, "Haettenschweiler", "Franklin Gothic Bold", sans-serif',
+                        background: 'linear-gradient(180deg, #646973 0%, #BBCCD7 100%)',
+                        WebkitBackgroundClip: 'text',
+                        backgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                      }}
+                    >
+                      chandrashekarar42@gmail.com
+                    </span>
                   {!copied && (
                     <p className={`
                       text-[10px] font-mono uppercase tracking-widest
