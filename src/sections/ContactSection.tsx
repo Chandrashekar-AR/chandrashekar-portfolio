@@ -178,7 +178,7 @@ export default function ContactSection() {
 
         {/* Contact Channels - Only 3 profiles */}
         <FadeIn delay={0.15} y={30} className="flex flex-col gap-6 w-full max-w-4xl mx-auto items-center -mt-8">
-          <h3 className="text-[10px] font-mono tracking-widest text-[#D7E2EA]/40 uppercase mb-2 text-center">
+          <h3 className="text-[14px] font-bold uppercase tracking-wider text-[#D7E2EA] mb-2 text-center">
             Let's connect
           </h3>
 
