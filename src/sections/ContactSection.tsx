@@ -148,7 +148,7 @@ export default function ContactSection() {
                   </span>
                   {!copied && (
                     <p className={`
-                      text-[10px] font-mono uppercase tracking-widest
+                      text-[12px] font-mono uppercase tracking-widest
                       border rounded-[8px] px-4 py-1.5 backdrop-blur-sm transition-all duration-200
                       cursor-pointer select-none whitespace-nowrap
                       opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto
