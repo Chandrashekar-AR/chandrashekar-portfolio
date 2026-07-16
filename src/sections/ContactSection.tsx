@@ -230,27 +230,7 @@ export default function ContactSection() {
         </FadeIn>
 
         {/* Footer */}
-        <FadeIn delay={0.4} y={20} className="w-full">
-          <footer className="mt-28 sm:mt-36 pt-12 border-t-2 border-[#D7E2EA]/10 flex flex-col sm:flex-row items-center justify-between gap-6 text-[#D7E2EA]/30 text-[10px] sm:text-xs font-mono tracking-wider">
-            <div className="flex items-center gap-3">
-              <span className="w-7 h-7 rounded-lg border border-[#D7E2EA]/30 bg-[#0C0C0C] flex items-center justify-center text-[#D7E2EA] font-black text-xs">
-                C
-              </span>
-              <span className="text-[#D7E2EA]/60 font-semibold uppercase">
-                Chandrashekar AR
-              </span>
-            </div>
 
-            <p className="uppercase text-center sm:text-left leading-relaxed">
-              © 2026 · Creative Head & Visual Strategist · Built with React & Tailwind CSS
-            </p>
-
-            <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D7E2EA]/40" />
-              <span className="uppercase">Crafted with intent.</span>
-            </div>
-          </footer>
-        </FadeIn>
       </div>
     </section>
   )
