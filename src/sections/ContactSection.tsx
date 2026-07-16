@@ -80,7 +80,7 @@ export default function ContactSection() {
             <h2
               className="hero-heading font-black uppercase leading-none"
               style={{
-                fontSize: 'clamp(3rem, 12vw, 160px)',
+                fontSize: 'clamp(1.75rem, 5.5vw, 80px)',
                 background: 'linear-gradient(180deg, #FEFCE8 0%, #FEF9C3 25%, #FDE047 50%, #FBBF24 75%, #F59E0B 100%)',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
