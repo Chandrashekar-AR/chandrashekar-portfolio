@@ -3,6 +3,7 @@ import FadeIn from '../components/FadeIn'
 import chatgptNewLogo from '../assets/chatgpt_new.png'
 import claudeNewLogo from '../assets/claude_new.png'
 import geminiNewLogo from '../assets/gemini_new.png'
+import grokLogo from '../assets/download.png'
 import falNewLogo from '../assets/fal_new.png'
 import higgsfieldNewLogo from '../assets/higgsfield_new.png'
 import runwayNewLogo from '../assets/runway_new.png'
@@ -37,6 +38,12 @@ function ClaudeIcon() {
 function GeminiIcon() {
   return (
     <img src={geminiNewLogo} alt="Gemini" className="w-6 h-6 object-contain rounded" />
+  )
+}
+
+function GrokIcon() {
+  return (
+    <img src={grokLogo} alt="Grok" className="w-12 h-12 object-contain rounded" />
   )
 }
 
@@ -313,8 +320,9 @@ const STACK_LEVELS: StackLevel[] = [
     tools: [
       { name: 'ChatGPT', icon: ChatGPTIcon, glowClass: 'hover:border-[#10a37f]/50 hover:shadow-[0_0_15px_rgba(16,163,127,0.25)]' },
       { name: 'Claude', icon: ClaudeIcon, glowClass: 'hover:border-[#e05c2b]/50 hover:shadow-[0_0_15px_rgba(224,92,43,0.25)]' },
-      { name: '', icon: () => <div />, glowClass: '', isEmpty: true },
       { name: 'Gemini', icon: GeminiIcon, glowClass: 'hover:border-[#9c8cff]/50 hover:shadow-[0_0_15px_rgba(156,140,255,0.25)]' },
+      { name: 'Grok', icon: GrokIcon, glowClass: 'hover:border-[#9c8cff]/50 hover:shadow-[0_0_15px_rgba(156,140,255,0.25)]' },
+
     ],
   },
   {
