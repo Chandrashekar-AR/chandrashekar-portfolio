@@ -186,10 +186,11 @@ function TimelineBody({ card }: { card: ExperienceCard }) {
   )
 }
 
-/** Right card body — highlights column + campaign gallery + client badges. */
+/** Right card body — highlights column (+ optional gallery) + client badges. */
 function HighlightsGalleryBody({ card }: { card: ExperienceCard }) {
   const accent = ACCENT[card.accent]
   const gallery = card.gallery ?? []
+  const hasGallery = gallery.length > 0
 
   return (
     <>
@@ -203,7 +204,9 @@ function HighlightsGalleryBody({ card }: { card: ExperienceCard }) {
         </span>
       </div>
 
-      <div className="mt-5 flex flex-col gap-6 xl:flex-row xl:gap-5">
+      <div
+        className={`mt-5 flex flex-col gap-6 ${hasGallery ? 'xl:flex-row xl:gap-5' : ''}`}
+      >
         {/* Experience highlights — readable text column */}
         <div className="min-w-0 flex-1">
           <span className="font-mono text-[10px] uppercase tracking-widest text-[#D7E2EA]/40">
@@ -224,35 +227,37 @@ function HighlightsGalleryBody({ card }: { card: ExperienceCard }) {
           </ul>
         </div>
 
-        {/* Campaign visual gallery */}
-        <div className="w-full shrink-0 xl:w-[44%]">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-[#D7E2EA]/40">
-            Campaign Visuals
-          </span>
-          <div className="mt-3 grid grid-cols-2 gap-2 sm:gap-2.5">
-            {gallery.map((item) => (
-              <figure
-                key={item.brand}
-                className="group/tile relative aspect-[4/3] overflow-hidden rounded-[16px] border border-[#D7E2EA]/10 bg-[#D7E2EA]/[0.04]"
-              >
-                {item.imageUrl.trim().length > 0 && (
-                  <img
-                    src={item.imageUrl}
-                    alt={`${item.brand} campaign visual`}
-                    loading="lazy"
-                    onError={(event) => {
-                      event.currentTarget.style.display = 'none'
-                    }}
-                    className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover/tile:scale-105 motion-reduce:group-hover/tile:scale-100"
-                  />
-                )}
-                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-2.5 pb-1.5 pt-5 font-mono text-[8px] uppercase tracking-wider text-[#D7E2EA]/85 sm:text-[9px]">
-                  {item.brand}
-                </figcaption>
-              </figure>
-            ))}
+        {/* Campaign visual gallery — rendered only when the card has one */}
+        {hasGallery && (
+          <div className="w-full shrink-0 xl:w-[44%]">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-[#D7E2EA]/40">
+              Campaign Visuals
+            </span>
+            <div className="mt-3 grid grid-cols-2 gap-2 sm:gap-2.5">
+              {gallery.map((item) => (
+                <figure
+                  key={item.brand}
+                  className="group/tile relative aspect-[4/3] overflow-hidden rounded-[16px] border border-[#D7E2EA]/10 bg-[#D7E2EA]/[0.04]"
+                >
+                  {item.imageUrl.trim().length > 0 && (
+                    <img
+                      src={item.imageUrl}
+                      alt={`${item.brand} campaign visual`}
+                      loading="lazy"
+                      onError={(event) => {
+                        event.currentTarget.style.display = 'none'
+                      }}
+                      className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover/tile:scale-105 motion-reduce:group-hover/tile:scale-100"
+                    />
+                  )}
+                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-2.5 pb-1.5 pt-5 font-mono text-[8px] uppercase tracking-wider text-[#D7E2EA]/85 sm:text-[9px]">
+                    {item.brand}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   )

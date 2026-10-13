@@ -2,7 +2,7 @@
  * ══════════════════════════════════════════════════════════════════════
  *  JOURNEY SECTION — TWO EXPERIENCE CARDS (Brandshark | AdMitra)
  *  ▸ Source of truth: ChandrashekarAR_AI_.pdf (resume)
- *  ▸ THIS IS THE ONLY FILE YOU NEED TO EDIT TO SET LOGOS / CAMPAIGN ART
+ *  ▸ THIS IS THE ONLY FILE YOU NEED TO EDIT TO SET LOGOS / OPTIONAL GALLERY
  * ══════════════════════════════════════════════════════════════════════
  *
  *  1) logoUrl (optional)
@@ -10,18 +10,16 @@
  *     When empty, a typographic monogram tile is rendered instead —
  *     no fake logo image is ever generated.
  *
- *  2) gallery[].imageUrl (AdMitra card only)
- *     Real campaign artwork per client. Montra Electric and Lincoln
- *     Pharma reuse the actual Drive frames already configured for the
- *     project showcase cards (imported below, single source of truth).
- *     Leave '' for a client whose asset you have not added yet — the
- *     tile keeps its caption and shows a neutral surface (no fake image).
+ *  2) gallery (optional — not used right now)
+ *     The AdMitra card renders highlights + client badges only, with no
+ *     campaign visuals. To bring the image grid back, add
+ *     `gallery: [{ brand, imageUrl }, …]` to a card — the section renders
+ *     it whenever the array is present. Use a real artwork URL per client
+ *     ('' = caption-only tile, never a fake image).
  *
  *  3) All copy below is taken verbatim from the resume. Do not invent
  *     metrics, dates, clients or achievements here.
  */
-
-import { MONTRA_VIDEO_PROJECT, LINCOLN_VIDEO_PROJECT } from './videoShowcase'
 
 export type ExperienceAccent = 'yellow' | 'blue'
 
@@ -102,15 +100,6 @@ export const ADMITRA_EXPERIENCE: ExperienceCard = {
     'Collaborated directly with co-founders to launch campaigns optimized for Instagram Reels and Facebook Ads.',
   ],
   emphasis: ['AI-powered', 'Instagram Reels', 'Facebook Ads'],
-
-  gallery: [
-    { brand: 'Montra Electric', imageUrl: MONTRA_VIDEO_PROJECT.thumbnailUrl },
-    /* ── ✎ PASTE AMPERE / EKOTEJAS CAMPAIGN ART BELOW ("" = caption only) ── */
-    { brand: 'Ampere', imageUrl: '' },
-    { brand: 'EkoTejas', imageUrl: '' },
-    /* ────────────────────────────────────────────────────────────────── */
-    { brand: 'Lincoln Pharma', imageUrl: LINCOLN_VIDEO_PROJECT.thumbnailUrl },
-  ],
 
   clients: ['Montra Electric', 'EkoTejas', 'Ampere', 'Lincoln Pharma'],
 }

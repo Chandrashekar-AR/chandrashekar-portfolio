@@ -21,38 +21,38 @@ const CAPABILITIES: Capability[] = [
   {
     number: '01',
     name: 'AI Creative Direction',
-    subtitle: 'Multimodal AI, Cinematic Worldbuilding',
+    subtitle: 'Concept design and Prompt Engineering using Higgsfield and Runway',
     icon: Aperture,
   },
   {
     number: '02',
     name: 'Content Research & Styling',
-    subtitle: 'Audience Insights, Data Analytics',
+    subtitle: 'Storyboarding and visual references using Chatgpt, Claude and Grok',
     icon: BarChart3,
     featured: true,
   },
   {
     number: '03',
     name: 'Character Building',
-    subtitle: 'Multi-Shot Continuity, Asset Locking',
+    subtitle: 'Character consistency using Nanobanana and GPT image',
     icon: UserRound,
   },
   {
     number: '04',
     name: 'Storyboarding & Pre-Visuals',
-    subtitle: 'Sequenced Layouts, Shot Design',
+    subtitle: 'Breaking scripts into scenes and shots, planning camera angles, framing, transitions.',
     icon: LayoutGrid,
   },
   {
     number: '05',
     name: 'AI Audio & Narration Design',
-    subtitle: 'Voice Cloning, Sound FX Layering',
+    subtitle: 'AI lipsync visuals using Heygen and Voiceovers using Elevenlabs',
     icon: Mic,
   },
   {
     number: '06',
     name: 'Video Editing',
-    subtitle: 'Pacing, Rhythm, Narrative Flow',
+    subtitle: 'Assembling generated footage using Davinci Resolve and VN Editor',
     icon: Scissors,
   },
 ]
@@ -65,10 +65,9 @@ function CapabilityCard({ item, index }: { item: Capability; index: number }) {
       <FadeIn delay={index * 0.06} y={24} className="h-full">
         <article
           className={`group flex h-full flex-col gap-2.5 rounded-2xl border p-5 transition-all duration-300 sm:gap-3 sm:p-6 md:p-7
-            ${
-              item.featured
-                ? 'border-cyan-400/40 bg-cyan-400/[0.06] shadow-[0_0_45px_-20px_rgba(34,211,238,0.55)]'
-                : 'border-[#D7E2EA]/10 bg-[#D7E2EA]/[0.03]'
+            ${item.featured
+              ? 'border-cyan-400/40 bg-cyan-400/[0.06]'
+              : 'border-[#D7E2EA]/10 bg-[#D7E2EA]/[0.03]'
             }
             hover:border-cyan-400/50 hover:bg-[#D7E2EA]/[0.07] hover:shadow-[0_0_45px_-18px_rgba(34,211,238,0.45)]`}
         >
@@ -93,11 +92,10 @@ function CapabilityCard({ item, index }: { item: Capability; index: number }) {
 
           <span
             aria-hidden="true"
-            className={`mt-auto block h-px transition-all duration-300 ${
-              item.featured
-                ? 'w-full bg-cyan-400/60'
-                : 'w-8 bg-cyan-400/40 group-hover:w-full group-hover:bg-cyan-400'
-            }`}
+            className={`mt-auto block h-px transition-all duration-300 ${item.featured
+              ? 'w-full bg-cyan-400/60'
+              : 'w-8 bg-cyan-400/40 group-hover:w-full group-hover:bg-cyan-400'
+              }`}
           />
         </article>
       </FadeIn>
