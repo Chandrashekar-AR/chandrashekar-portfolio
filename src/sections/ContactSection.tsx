@@ -130,7 +130,6 @@ export default function ContactSection() {
                   >
                     chandrashekarar42@gmail.com
                     <span className="relative inline-block">
-                      m
                       {!copied && (
                         <svg
                           className="absolute -top-4 left-1/2 -translate-x-1/2 w-4 h-4 text-[#FBBF24]/80 hover:text-[#FBBF24] transition-colors duration-200 cursor-pointer"
