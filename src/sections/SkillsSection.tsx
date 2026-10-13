@@ -119,13 +119,13 @@ function ComfyUIIcon() {
 
 function GPTImageIcon() {
   return (
-    <img src={chatgptNewLogo} alt="GPT Image" className="w-6 h-6 object-contain rounded" />
+    <img src={chatgptNewLogo} alt="GPT Image 2.5" className="w-6 h-6 object-contain rounded" />
   )
 }
 
 function NanobananaIcon() {
   return (
-    <img src={nanobananaNewLogo} alt="Nanobanana" className="w-6 h-6 object-contain rounded" />
+    <img src={nanobananaNewLogo} alt="Nanobanana 2.0" className="w-6 h-6 object-contain rounded" />
   )
 }
 
@@ -352,8 +352,8 @@ const STACK_LEVELS: StackLevel[] = [
     title: 'Image Generation',
     icon: BrainCategoryIcon,
     tools: [
-      { name: 'GPT Image', icon: GPTImageIcon, glowClass: 'hover:border-[#10a37f]/50 hover:shadow-[0_0_15px_rgba(16,163,127,0.25)]' },
-      { name: 'Nanobanana', icon: NanobananaIcon, glowClass: 'hover:border-[#FBBF24]/50 hover:shadow-[0_0_15px_rgba(251,191,36,0.25)]' },
+      { name: 'GPT Image 2.5', icon: GPTImageIcon, glowClass: 'hover:border-[#10a37f]/50 hover:shadow-[0_0_15px_rgba(16,163,127,0.25)]' },
+      { name: 'Nanobanana 2.0', icon: NanobananaIcon, glowClass: 'hover:border-[#FBBF24]/50 hover:shadow-[0_0_15px_rgba(251,191,36,0.25)]' },
       { name: 'Midjourney', icon: MidjourneyIcon, glowClass: 'hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]' },
       { name: '', icon: () => <div />, glowClass: '', isEmpty: true },
     ],
@@ -366,7 +366,7 @@ const STACK_LEVELS: StackLevel[] = [
       { name: 'Kling V3', icon: KlingIcon, glowClass: 'hover:border-[#00D4FF]/50 hover:shadow-[0_0_25px_rgba(0,212,255,0.5),_0_0_0_2px_rgba(0,212,255,0.7)]' },
       { name: 'Veo 3.1', icon: VeoIcon, glowClass: 'hover:border-[#4285F4]/40 hover:shadow-[0_0_15px_rgba(66,133,244,0.2)]' },
       { name: 'Gen-4 Turbo', icon: Gen4TurboIcon, glowClass: 'hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]' },
-      { name: 'Seedance 2.0', icon: SeedanceIcon, glowClass: 'hover:border-[#3B82F6]/50 hover:shadow-[0_0_15px_rgba(59,130,246,0.25)]' },
+      { name: 'Seedance 2.5', icon: SeedanceIcon, glowClass: 'hover:border-[#3B82F6]/50 hover:shadow-[0_0_15px_rgba(59,130,246,0.25)]' },
     ],
   },
   {
