@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 
-const ALL_IMAGES = [
+const POSTER_IMAGES = [
   'https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif',
   'https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif',
   'https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif',
@@ -25,29 +25,16 @@ const ALL_IMAGES = [
   'https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif',
 ]
 
-const ROW1_IMAGES = ALL_IMAGES.slice(0, 11)
-const ROW2_IMAGES = [
-  ...ALL_IMAGES.slice(11),
-  ...ALL_IMAGES.slice(11),
-  ...ALL_IMAGES.slice(11),
-  ...ALL_IMAGES.slice(11),
-  'https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif',
-  'https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif',
-  'https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif',
-  'https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif',
-  'https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif',
-  'https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif',
-]
 const CARD_WIDTH = 420
 const GAP = 12
 const ROW_WIDTH = (CARD_WIDTH + GAP) * 11
 
-function MarqueeCard({ src, index, row }: { src: string; index: number; row: number }) {
+function MarqueeCard({ src }: { src: string }) {
   return (
     <motion.img
       src={src}
       alt=""
-      className="w-[420px] h-[560px] rounded-2xl object-cover flex-shrink-0"
+      className="w-[420px] aspect-[9/16] rounded-2xl object-cover flex-shrink-0"
       loading="lazy"
       style={{ zIndex: 1 }}
       whileHover={{
@@ -63,17 +50,14 @@ function MarqueeCard({ src, index, row }: { src: string; index: number; row: num
 
 function MarqueeRow({
   images,
-  direction,
   paused,
   initialOffset = 0,
 }: {
   images: string[]
-  direction: 'left' | 'right'
   paused: boolean
   initialOffset?: number
 }) {
   const controls = useAnimation()
-  const distance = direction === 'left' ? -ROW_WIDTH : ROW_WIDTH
 
   useEffect(() => {
     controls.set({ x: initialOffset })
@@ -82,7 +66,7 @@ function MarqueeRow({
       while (true) {
         if (!paused) {
           await controls.start({
-            x: initialOffset + distance,
+            x: initialOffset - ROW_WIDTH,
             transition: { duration: 40, ease: 'linear' },
           })
           controls.set({ x: initialOffset })
@@ -93,7 +77,7 @@ function MarqueeRow({
     }
     animate()
     return () => controls.stop()
-  }, [controls, direction, paused, initialOffset, distance])
+  }, [controls, paused, initialOffset])
 
   const triple = [...images, ...images, ...images]
 
@@ -104,7 +88,7 @@ function MarqueeRow({
       style={{ width: `${ROW_WIDTH * 3}px`, x: initialOffset }}
     >
       {triple.map((url, i) => (
-        <MarqueeCard key={`${direction}-${i}`} src={url} index={i} row={direction === 'left' ? 1 : 2} />
+        <MarqueeCard key={i} src={url} />
       ))}
     </motion.div>
   )
@@ -116,19 +100,10 @@ export default function MarqueeSection() {
   return (
     <section className="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden">
       <div className="flex flex-col gap-3">
-        {/* Row 1 — moves LEFT continuously, seamless loop */}
+        {/* Single row — moves LEFT continuously, seamless loop */}
         <MarqueeRow
-          images={ROW1_IMAGES}
-          direction="left"
+          images={POSTER_IMAGES.slice(0, 11)}
           paused={paused}
-        />
-
-        {/* Row 2 — moves RIGHT continuously, seamless loop, starts at 46th card */}
-        <MarqueeRow
-          images={ROW2_IMAGES}
-          direction="right"
-          paused={paused}
-          initialOffset={-19440}
         />
       </div>
     </section>
