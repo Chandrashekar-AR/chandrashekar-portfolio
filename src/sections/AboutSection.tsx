@@ -1,6 +1,5 @@
 import FadeIn from '../components/FadeIn'
 import AnimatedText from '../components/AnimatedText'
-import ContactButton from '../components/ContactButton'
 
 const DECORATIVE_IMAGES = [
   {
@@ -38,7 +37,7 @@ const ABOUT_TEXT =
 
 export default function AboutSection() {
   return (
-    <section id="about" className="min-h-screen relative px-5 sm:px-8 md:px-10 py-20 flex items-center justify-center overflow-hidden">
+    <section id="about" className="min-h-screen relative px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32 flex items-center justify-center overflow-hidden">
       {/* Decorative 3D images */}
       {DECORATIVE_IMAGES.map((img) => (
         <FadeIn
@@ -59,12 +58,12 @@ export default function AboutSection() {
       ))}
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center gap-10 sm:gap-14 md:gap-16">
+      <div className="relative z-10 flex flex-col items-center">
         <FadeIn delay={0} y={40}>
           <h2
-            className="hero-heading font-black uppercase leading-none tracking-tight text-center"
+            className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-16 sm:mb-20 md:mb-28"
             style={{
-              fontSize: 'clamp(1.75rem, 5.5vw, 80px)',
+              fontSize: 'clamp(2.25rem, 7vw, 100px)',
               background: 'linear-gradient(180deg, #FEFCE8 0%, #FEF9C3 25%, #FDE047 50%, #FBBF24 75%, #F59E0B 100%)',
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
@@ -75,17 +74,11 @@ export default function AboutSection() {
           </h2>
         </FadeIn>
 
-        <div className="flex flex-col items-center gap-16 sm:gap-20 md:gap-24">
-          <AnimatedText
-            text={ABOUT_TEXT}
-            className="text-[#D7E2EA] font-medium text-center leading-relaxed max-w-[560px]"
-            style={{ fontSize: 'clamp(1rem, 2vw, 1.35rem)' }}
-          />
-
-          <FadeIn delay={0.4} y={20}>
-            <ContactButton />
-          </FadeIn>
-        </div>
+        <AnimatedText
+          text={ABOUT_TEXT}
+          className="text-[#D7E2EA] font-medium text-center leading-relaxed max-w-[600px]"
+          style={{ fontSize: 'clamp(1.05rem, 2.4vw, 1.75rem)' }}
+        />
       </div>
     </section>
   )

@@ -1,111 +1,135 @@
-import { useEffect, useState } from 'react'
-import { motion, useAnimation } from 'framer-motion'
+import {
+  Aperture,
+  BarChart3,
+  UserRound,
+  LayoutGrid,
+  Mic,
+  Scissors,
+} from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+import FadeIn from '../components/FadeIn'
 
-const POSTER_IMAGES = [
-  'https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif',
-  'https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif',
-  'https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif',
-  'https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif',
-  'https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif',
-  'https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif',
-  'https://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif',
-  'https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif',
-  'https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif',
-  'https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif',
-  'https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif',
-  'https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif',
-  'https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif',
-  'https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif',
-  'https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif',
-  'https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif',
-  'https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif',
-  'https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif',
-  'https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif',
-  'https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif',
-  'https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif',
-]
-
-const CARD_WIDTH = 480
-const GAP = 24
-const ROW_WIDTH = (CARD_WIDTH + GAP) * 11
-
-function MarqueeCard({ src }: { src: string }) {
-  return (
-    <motion.img
-      src={src}
-      alt=""
-      className="w-[480px] aspect-[16/9] rounded-2xl object-cover flex-shrink-0"
-      loading="lazy"
-      style={{ zIndex: 1 }}
-      whileHover={{
-        scale: 1.15,
-        y: -40,
-        zIndex: 100,
-        boxShadow: '0 40px 80px -20px rgba(0,0,0,0.6)',
-        transition: { duration: 0.3, ease: 'easeOut' },
-      }}
-    />
-  )
+interface Capability {
+  number: string
+  name: string
+  subtitle: string
+  icon: LucideIcon
+  featured?: boolean
 }
 
-function MarqueeRow({
-  images,
-  paused,
-  initialOffset = 0,
-}: {
-  images: string[]
-  paused: boolean
-  initialOffset?: number
-}) {
-  const controls = useAnimation()
+const CAPABILITIES: Capability[] = [
+  {
+    number: '01',
+    name: 'AI Creative Direction',
+    subtitle: 'Multimodal AI, Cinematic Worldbuilding',
+    icon: Aperture,
+  },
+  {
+    number: '02',
+    name: 'Content Research & Styling',
+    subtitle: 'Audience Insights, Data Analytics',
+    icon: BarChart3,
+    featured: true,
+  },
+  {
+    number: '03',
+    name: 'Character Building',
+    subtitle: 'Multi-Shot Continuity, Asset Locking',
+    icon: UserRound,
+  },
+  {
+    number: '04',
+    name: 'Storyboarding & Pre-Visuals',
+    subtitle: 'Sequenced Layouts, Shot Design',
+    icon: LayoutGrid,
+  },
+  {
+    number: '05',
+    name: 'AI Audio & Narration Design',
+    subtitle: 'Voice Cloning, Sound FX Layering',
+    icon: Mic,
+  },
+  {
+    number: '06',
+    name: 'Video Editing',
+    subtitle: 'Pacing, Rhythm, Narrative Flow',
+    icon: Scissors,
+  },
+]
 
-  useEffect(() => {
-    controls.set({ x: initialOffset })
-
-    const animate = async () => {
-      while (true) {
-        if (!paused) {
-          await controls.start({
-            x: initialOffset - ROW_WIDTH,
-            transition: { duration: 40, ease: 'linear' },
-          })
-          controls.set({ x: initialOffset })
-        } else {
-          await new Promise(r => setTimeout(r, 100))
-        }
-      }
-    }
-    animate()
-    return () => controls.stop()
-  }, [controls, paused, initialOffset])
-
-  const triple = [...images, ...images, ...images]
+function CapabilityCard({ item, index }: { item: Capability; index: number }) {
+  const Icon = item.icon
 
   return (
-    <motion.div
-      animate={controls}
-      className="flex gap-6 will-change-transform"
-      style={{ width: `${ROW_WIDTH * 3}px`, x: initialOffset }}
-    >
-      {triple.map((url, i) => (
-        <MarqueeCard key={i} src={url} />
-      ))}
-    </motion.div>
+    <li className="h-full">
+      <FadeIn delay={index * 0.06} y={24} className="h-full">
+        <article
+          className={`group flex h-full flex-col gap-2.5 rounded-2xl border p-5 transition-all duration-300 sm:gap-3 sm:p-6 md:p-7
+            ${
+              item.featured
+                ? 'border-cyan-400/40 bg-cyan-400/[0.06] shadow-[0_0_45px_-20px_rgba(34,211,238,0.55)]'
+                : 'border-[#D7E2EA]/10 bg-[#D7E2EA]/[0.03]'
+            }
+            hover:border-cyan-400/50 hover:bg-[#D7E2EA]/[0.07] hover:shadow-[0_0_45px_-18px_rgba(34,211,238,0.45)]`}
+        >
+          <div className="flex items-start justify-between gap-3">
+            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-cyan-400/80">
+              {item.number}
+            </span>
+            <Icon
+              aria-hidden="true"
+              strokeWidth={1.5}
+              className="h-5 w-5 shrink-0 text-cyan-400/70 transition-colors duration-300 group-hover:text-cyan-300"
+            />
+          </div>
+
+          <h3 className="mt-1 text-[15px] font-bold uppercase leading-snug tracking-tight text-[#D7E2EA] transition-colors duration-300 group-hover:text-white sm:text-base md:text-lg">
+            {item.name}
+          </h3>
+
+          <p className="font-mono text-[10px] uppercase leading-relaxed tracking-widest text-[#D7E2EA]/45 transition-colors duration-300 group-hover:text-[#D7E2EA]/70 sm:text-[11px]">
+            {item.subtitle}
+          </p>
+
+          <span
+            aria-hidden="true"
+            className={`mt-auto block h-px transition-all duration-300 ${
+              item.featured
+                ? 'w-full bg-cyan-400/60'
+                : 'w-8 bg-cyan-400/40 group-hover:w-full group-hover:bg-cyan-400'
+            }`}
+          />
+        </article>
+      </FadeIn>
+    </li>
   )
 }
 
 export default function MarqueeSection() {
-  const [paused, setPaused] = useState(false)
-
   return (
-    <section className="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden">
-      <div className="flex flex-col gap-3">
-        {/* Single row — moves LEFT continuously, seamless loop */}
-        <MarqueeRow
-          images={POSTER_IMAGES.slice(0, 11)}
-          paused={paused}
-        />
-      </div>
+    <section id="core-capabilities" className="bg-[#0C0C0C] py-20 sm:py-24 md:py-32 overflow-hidden">
+      {/* Section heading — matches the "About me" heading style exactly */}
+      <FadeIn delay={0} y={40}>
+        <h2
+          className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-16 sm:mb-20 md:mb-28"
+          style={{
+            fontSize: 'clamp(1.75rem, 5.5vw, 80px)',
+            background: 'linear-gradient(180deg, #FEFCE8 0%, #FEF9C3 25%, #FDE047 50%, #FBBF24 75%, #F59E0B 100%)',
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text',
+            color: 'transparent',
+          }}
+        >
+          CORE CAPABILITIES
+        </h2>
+      </FadeIn>
+
+      {/* Capability cards — 1 col mobile / 2 cols tablet / 3 cols desktop */}
+      <ul className="mx-auto grid max-w-6xl list-none grid-cols-1 gap-4 px-5 sm:grid-cols-2 sm:gap-5 sm:px-8 md:gap-6 md:px-10 lg:grid-cols-3">
+        {CAPABILITIES.map((item, i) => (
+          <CapabilityCard key={item.number} item={item} index={i} />
+        ))}
+      </ul>
     </section>
   )
 }

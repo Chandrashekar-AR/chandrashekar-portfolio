@@ -3,7 +3,7 @@ import FadeIn from '../components/FadeIn'
 
 export default function HeroSection() {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center py-24 sm:py-28" style={{ overflowX: 'clip' }}>
+    <section className="min-h-screen flex flex-col items-center justify-center py-20 sm:py-24 md:py-32" style={{ overflowX: 'clip' }}>
       {/* Main content area — min-h-screen + section padding keeps it clear of the fixed navbar without breaking centering */}
       <div className="relative z-10 flex flex-col items-center gap-y-8 sm:gap-y-10 md:gap-y-12 w-full px-6">
         {/* Name heading */}
@@ -33,38 +33,40 @@ export default function HeroSection() {
             <br />
             Human
             <br />
-            <span className="text-cyan-400" style={{ WebkitTextFillColor: '#06b6d4' }}>
+            <span
+              style={{
+                background: 'linear-gradient(180deg, #FEFCE8 0%, #FEF9C3 25%, #FDE047 50%, #FBBF24 75%, #F59E0B 100%)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
               Attention.
             </span>
           </h2>
         </FadeIn>
 
-        {/* Sub-headline with left border accent */}
-        <FadeIn delay={0.6} y={30}>
-          <div className="border-l border-zinc-800 pl-4 sm:pl-5 max-w-[540px]">
-            <p className="text-[#D7E2EA]/60 leading-relaxed text-left" style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>
-              I direct and produce AI-powered stories, bringing ideas to life through cinematic microdramas, story-driven ads, and engaging UGC-style videos using generative AI.
-            </p>
-          </div>
-        </FadeIn>
-
-        {/* Call-to-action buttons */}
-        <FadeIn delay={0.75} y={20}>
-          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+        {/* Call-to-action buttons — same centered axis as the headline above */}
+        <FadeIn delay={0.6} y={20} className="w-full">
+          <div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
             {/* Primary — View resume (opens in a new tab so the portfolio stays visible) */}
             <a
               href="https://drive.google.com/file/d/17ixAMudoIWGV59rH19mxyP5UpwJk1ttm/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2.5 bg-cyan-400 text-black font-mono font-bold text-[11px] sm:text-xs uppercase tracking-widest px-6 py-3.5 rounded-full transition-all duration-300 hover:bg-cyan-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.4)]"
+              className="group inline-flex items-center gap-2.5 text-black font-mono font-bold text-[11px] sm:text-xs uppercase tracking-widest px-6 py-3.5 rounded-full transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_30px_rgba(251,191,36,0.5)]"
+              style={{
+                background: 'linear-gradient(180deg, #FEFCE8 0%, #FEF9C3 25%, #FDE047 50%, #FBBF24 75%, #F59E0B 100%)',
+              }}
             >
               <Download size={15} className="transition-transform duration-300 group-hover:translate-y-0.5" />
               [Download Resume]
             </a>
 
-            {/* Secondary — Access portfolio */}
+            {/* Secondary — Access portfolio (smooth-scrolls to the About section) */}
             <a
-              href="#projects"
+              href="#about"
               className="group inline-flex items-center gap-2.5 border border-zinc-800 font-mono text-zinc-300 text-[11px] sm:text-xs uppercase tracking-widest px-6 py-3.5 rounded-full transition-all duration-300 hover:border-zinc-600 hover:text-white"
             >
               [Access Portfolio]

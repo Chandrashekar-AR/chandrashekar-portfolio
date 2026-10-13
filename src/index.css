@@ -17,6 +17,18 @@ body,
   font-family: 'Kanit', sans-serif;
 }
 
+/* Smooth in-page anchor scrolling (nav links + CTA buttons) */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 .hero-heading {
   background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
   -webkit-background-clip: text;
@@ -82,4 +94,39 @@ body,
 .social-links-container .social-link:hover {
   transform: scale(1.1);
   z-index: 10;
+}
+
+/* Video showcase — slow glow ring behind the circular play button */
+.video-pulse-ring {
+  animation: video-ring-pulse 2.6s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+
+@keyframes video-ring-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  70%,
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video-pulse-ring {
+    animation: none;
+    opacity: 0.35;
+  }
+}
+
+/* Featured credential card — red hover glow (Google AI Professional Certificate).
+   Transitions are plain CSS (300ms) and snap instantly for reduced-motion users. */
+@media (prefers-reduced-motion: reduce) {
+  .credential-card,
+  .credential-card * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

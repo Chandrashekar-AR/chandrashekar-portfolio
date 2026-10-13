@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import HeroSection from './sections/HeroSection.tsx'
 import MarqueeSection from './sections/MarqueeSection.tsx'
 import AboutSection from './sections/AboutSection.tsx'
-import ServicesSection from './sections/ServicesSection.tsx'
 import ProjectsSection from './sections/ProjectsSection.tsx'
 import SkillsSection from './sections/SkillsSection.tsx'
 import ExperienceSection from './sections/ExperienceSection.tsx'
@@ -12,7 +11,7 @@ import ContactSection from './sections/ContactSection.tsx'
 
 const NAV_LINKS = [
   { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
+  { label: 'CORE CAPABILITIES', href: '#core-capabilities' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
   { label: 'Journey', href: '#experience' },
@@ -24,8 +23,8 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('')
 
   useEffect(() => {
-    const sectionIds = ['about', 'services', 'projects', 'skills', 'experience', 'certifications', 'contact']
-    
+    const sectionIds = ['about', 'core-capabilities', 'projects', 'skills', 'experience', 'certifications', 'contact']
+
     const observerOptions = {
       root: null,
       rootMargin: '-30% 0px -40% 0px',
@@ -76,9 +75,8 @@ export default function App() {
 
       {/* Sections rendering */}
       <HeroSection />
-      <MarqueeSection />
       <AboutSection />
-      <ServicesSection />
+      <MarqueeSection />
       <ProjectsSection />
       <SkillsSection />
       <ExperienceSection />
