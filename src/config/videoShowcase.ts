@@ -86,8 +86,9 @@ const montraProject: VideoProject = {
     'Produced the keynote launch reveal video, managing end-to-end production from AI footage generation using Kling AI to final editing and big-screen projection compositing.',
 
   /* ── ✎ PASTE YOUR TWO LINKS HERE ─────────────────────────────────── */
-  // Real frame pulled straight from your Drive video (no substitute image).
-  thumbnailUrl: 'https://drive.google.com/thumbnail?id=1rlcxqjFkMZ2NTLB-W208QxzWQfjh_kVa&sz=w1600',
+  // "Three Trucks, Three Teammates" thumbnail (1279×720 ≈ 16:9) — fills the
+  // horizontal frame edge-to-edge (object-cover, no letterboxing).
+  thumbnailUrl: 'https://i.postimg.cc/sgjkCkgg/Three-Trucks-Three-Teammates.png',
   videoUrl: 'https://drive.google.com/file/d/1rlcxqjFkMZ2NTLB-W208QxzWQfjh_kVa/view?usp=sharing',
   /* ────────────────────────────────────────────────────────────────── */
 
@@ -111,10 +112,9 @@ export const LINCOLN_VIDEO_PROJECT: VideoProject = {
     'Co-created a 15-minute product launch presentation drama under an aggressive 48-hour deadline. Managed complex voice narrations and dynamic B-roll generation.',
 
   /* ── ✎ PASTE YOUR TWO LINKS HERE ─────────────────────────────────── */
-  // Poster frame served by Google Drive for the ACTUAL Lincoln Pharma video
-  // (same convention as the Montra card). Swap in your own frame URL any
-  // time — leave it empty ('') and the card falls back to the dark frame.
-  thumbnailUrl: 'https://drive.google.com/thumbnail?id=1sb321CzLhbnoMsq_0BYUAaWooefdLXej&sz=w1600',
+  // Custom "Cinematic Courtroom" thumbnail (16:9) for the Lincoln Pharma card.
+  // Leave it empty ('') and the card falls back to the dark frame.
+  thumbnailUrl: 'https://i.postimg.cc/pLbwcmwN/Cinematic-Courtroom-Beneath-the-Crest.png',
   videoUrl: 'https://drive.google.com/file/d/1sb321CzLhbnoMsq_0BYUAaWooefdLXej/view?usp=sharing',
   /* ────────────────────────────────────────────────────────────────── */
 
@@ -142,12 +142,13 @@ export const DIESEL_DRAMA_REEL: VideoProject = {
 
   /* ── ✎ PASTE YOUR TWO LINKS HERE ─────────────────────────────────── */
   // 1) thumbnailUrl — the campaign thumbnail image YOU provide (a direct
-  //    image URL or an imported asset path). The Drive *sharing* page URL
-  //    is NOT an image — leave '' until you add the real thumbnail.
-  // 2) videoUrl — the Google Drive shareable link of the campaign video.
-  //    Clicking the thumbnail / play button opens it in a new tab.
-  thumbnailUrl: '',
-  videoUrl: '',
+  //    image URL or an imported asset path). This Montra Eviator showcase
+  //    image is 450x800 (exactly 9:16), so it fills the portrait frame
+  //    edge-to-edge with no cropping or distortion.
+  // 2) videoUrl — public Instagram reel of the "Diesel Drama" campaign.
+  //    Clicking the vertical visual / play button opens it in a new tab.
+  thumbnailUrl: 'https://i.postimg.cc/W3zppDpF/Montra-Eviator-Electric-Truck-Showcase.png',
+  videoUrl: 'https://www.instagram.com/reel/DYPaSyiKxhg/',
   /* ────────────────────────────────────────────────────────────────── */
 
   // Performance metrics — rendered side by side under the headline.

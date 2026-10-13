@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import type { CSSProperties } from 'react'
 import { ExternalLink, Film, Play } from 'lucide-react'
 import { MONTRA_VIDEO_PROJECT } from '../config/videoShowcase'
 import type { ShowcaseAccent, VideoProject } from '../config/videoShowcase'
@@ -182,21 +183,33 @@ export default function VideoShowcaseCard({ project = MONTRA_VIDEO_PROJECT }: Vi
 
   const frameBase = `relative w-full overflow-hidden rounded-[24px] border ${t.frame} bg-[#050505] transition-all duration-500 sm:rounded-[32px] md:rounded-[40px]`
 
+  // The thumbnail is also painted as the frame's CSS background, so the image
+  // fills the horizontal 16:9 space even if the <img> itself fails to decode.
+  const frameBackdrop: CSSProperties | undefined = hasThumbnail
+    ? {
+        backgroundImage: `url("${thumbnailUrl}")`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }
+    : undefined
+
   const frameImg = (
     <img
       src={thumbnailUrl}
       alt={`${project.title} — video thumbnail`}
-      loading="lazy"
+      loading="eager"
+      decoding="async"
       onError={(event) => {
         event.currentTarget.style.display = 'none'
       }}
-      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+      className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
     />
   )
 
   /* ── Single 16:9 video thumbnail (left column) ── */
   const videoFrame = (
-    <div className={`${frameBase} aspect-video ${t.frameGlow}`}>
+    <div className={`${frameBase} aspect-video ${t.frameGlow}`} style={frameBackdrop}>
       {hasThumbnail && frameImg}
 
       {/* Cinematic scrim so the play button and labels stay legible on any frame */}

@@ -24,6 +24,11 @@ const ACCENT = {
     bullet: 'bg-[#FBBF24] shadow-[0_0_8px_rgba(251,191,36,0.7)]',
     metric: 'font-semibold text-[#FDE047]',
     pill: 'border-[#FBBF24]/30 bg-[#FBBF24]/10 text-[#FDE68A]',
+    resource: 'border-[#FBBF24]/35 bg-[#0C0C0C]',
+    resourceHover:
+      'hover:border-[#FBBF24]/75 hover:bg-[#FBBF24]/[0.08] hover:shadow-[0_0_22px_-6px_rgba(251,191,36,0.55)]',
+    resourceIcon: 'text-[#FDE047]',
+    resourceLabel: 'text-[#FDE68A]',
   },
   blue: {
     card:
@@ -37,6 +42,11 @@ const ACCENT = {
     bullet: 'bg-[#3B82F6] shadow-[0_0_8px_rgba(59,130,246,0.7)]',
     metric: 'font-semibold text-[#93C5FD]',
     pill: 'border-[#3B82F6]/30 bg-[#3B82F6]/10 text-[#93C5FD]',
+    resource: 'border-[#3B82F6]/35 bg-[#0C0C0C]',
+    resourceHover:
+      'hover:border-[#3B82F6]/75 hover:bg-[#3B82F6]/[0.08] hover:shadow-[0_0_22px_-6px_rgba(59,130,246,0.5)]',
+    resourceIcon: 'text-[#93C5FD]',
+    resourceLabel: 'text-[#BFDBFE]',
   },
 } as const
 
@@ -132,6 +142,70 @@ function ClientStrip({ card }: { card: ExperienceCard }) {
         ))}
       </ul>
     </footer>
+  )
+}
+
+/**
+ * Resource buttons (Brandshark) — gold accents from the card's accent set.
+ * A configured url renders a new-tab link; an empty url renders a
+ * non-clickable "LINK COMING SOON" state (never a placeholder destination).
+ */
+function ResourceButtons({ card }: { card: ExperienceCard }) {
+  const accent = ACCENT[card.accent]
+  const resources = card.resources ?? []
+  if (resources.length === 0) return null
+
+  /* Shared shell — labels are short, so both buttons sit side by side on
+     desktop and wrap to a clean stack only when the card gets narrow. */
+  const shell =
+    'flex min-w-0 basis-[152px] flex-1 items-center gap-2 rounded-xl border px-3.5 py-2.5'
+
+  return (
+    <div className="relative z-10 mt-5 flex flex-wrap gap-2.5 sm:gap-3">
+      {resources.map(({ label, url, icon: Icon }) => {
+        const isLive = url.trim().length > 0
+
+        if (isLive) {
+          return (
+            <a
+              key={label}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${label} — opens in a new tab`}
+              className={`${shell} ${accent.resource} ${accent.resourceHover} transition-[border-color,background-color,box-shadow] duration-300 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FBBF24]`}
+            >
+              <Icon
+                aria-hidden="true"
+                strokeWidth={2}
+                className={`h-3.5 w-3.5 shrink-0 ${accent.resourceIcon}`}
+              />
+              <span
+                className={`truncate font-mono text-[10px] font-bold uppercase tracking-[0.2em] sm:text-[11px] ${accent.resourceLabel}`}
+              >
+                {label}
+              </span>
+            </a>
+          )
+        }
+
+        return (
+          <span
+            key={label}
+            aria-disabled="true"
+            className={`${shell} cursor-default border-[#D7E2EA]/12 bg-[#0C0C0C]/60 opacity-60`}
+          >
+            <Icon aria-hidden="true" strokeWidth={2} className="h-3.5 w-3.5 shrink-0 text-[#D7E2EA]/40" />
+            <span className="truncate font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#D7E2EA]/60 sm:text-[11px]">
+              {label}
+            </span>
+            <span className="ml-auto hidden shrink-0 font-mono text-[8px] uppercase tracking-[0.15em] text-[#D7E2EA]/35 sm:inline">
+              Link coming soon
+            </span>
+          </span>
+        )
+      })}
+    </div>
   )
 }
 
@@ -315,6 +389,10 @@ export default function ExperienceSection() {
                       <HighlightsGalleryBody card={card} />
                     )}
                   </div>
+
+                  {/* Resource links (Brandshark only — sits in the slack
+                      above the pinned CLIENTS strip) */}
+                  <ResourceButtons card={card} />
 
                   <ClientStrip card={card} />
                 </article>

@@ -63,13 +63,19 @@ export default function ReelShowcaseCard({ project }: { project: VideoProject })
         </span>
       </span>
 
-      {/* Circular accent play button — centred (only when a video is configured) */}
-      {isPlayable && (
-        <span className="pointer-events-none absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#EC4899]/70 bg-[#EC4899]/15 shadow-[0_0_25px_rgba(236,72,153,0.45)] backdrop-blur-md transition-all duration-300 group-hover:scale-110 sm:h-14 sm:w-14">
-          <span className="video-pulse-ring absolute -inset-2 rounded-full border border-[#EC4899]/40" />
-          <Play className="relative h-4 w-4 translate-x-[1px] fill-pink-100 text-pink-100 sm:h-5 sm:w-5" strokeWidth={2.5} />
-        </span>
-      )}
+      {/* Transparent play button — dead centre of the portrait visual.
+          Always shown; once `videoUrl` is configured the whole visual
+          becomes the link, so the button stays decorative (aria-hidden). */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-transparent backdrop-blur-[1px] transition-all duration-300 group-hover:scale-110 group-hover:border-white/70 group-hover:bg-white/5 sm:h-14 sm:w-14"
+      >
+        <span className="video-pulse-ring absolute -inset-2 rounded-full border border-white/15" />
+        <Play
+          className="relative h-4 w-4 translate-x-[1px] fill-white/90 text-white/90 drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)] sm:h-5 sm:w-5"
+          strokeWidth={2}
+        />
+      </span>
 
       {/* Performance dashboard overlay — separate UI elements */}
       {stats.length > 0 && (

@@ -2,7 +2,8 @@
  * ══════════════════════════════════════════════════════════════════════
  *  JOURNEY SECTION — TWO EXPERIENCE CARDS (Brandshark | AdMitra)
  *  ▸ Source of truth: ChandrashekarAR_AI_.pdf (resume)
- *  ▸ THIS IS THE ONLY FILE YOU NEED TO EDIT TO SET LOGOS / OPTIONAL GALLERY
+ *  ▸ THIS IS THE ONLY FILE YOU NEED TO EDIT TO SET LOGOS, DRIVE LINKS
+ *    AND OPTIONAL GALLERY
  * ══════════════════════════════════════════════════════════════════════
  *
  *  1) logoUrl (optional)
@@ -17,9 +18,19 @@
  *     it whenever the array is present. Use a real artwork URL per client
  *     ('' = caption-only tile, never a fake image).
  *
- *  3) All copy below is taken verbatim from the resume. Do not invent
+ *  3) resources (optional — Brandshark card)
+ *     Two gold buttons rendered above the CLIENTS strip. Each entry is
+ *     { label, icon, url }: paste a Google Drive share link (Drive ▸
+ *     Share ▸ "Anyone with the link" ▸ Viewer) into `url` and the button
+ *     opens it in a new tab. Leave url '' and the button renders a
+ *     non-clickable "LINK COMING SOON" state — never a fake link.
+ *
+ *  4) All copy below is taken verbatim from the resume. Do not invent
  *     metrics, dates, clients or achievements here.
  */
+
+import { Images, PlayCircle } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
 export type ExperienceAccent = 'yellow' | 'blue'
 
@@ -28,6 +39,16 @@ export interface GalleryItem {
   brand: string
   /** Real campaign image — '' renders a neutral caption-only tile. */
   imageUrl: string
+}
+
+/** Gold resource button (Brandshark card) — e.g. a Google Drive folder. */
+export interface CardResource {
+  /** Short uppercase button label. */
+  label: string
+  /** lucide icon shown left of the label. */
+  icon: LucideIcon
+  /** Drive link ('' = disabled "LINK COMING SOON" state, never a fake URL). */
+  url: string
 }
 
 export interface ExperienceCard {
@@ -53,6 +74,8 @@ export interface ExperienceCard {
   gallery?: GalleryItem[]
   /** Compact client strip shown beneath the highlights. */
   clients?: string[]
+  /** Resource buttons rendered just above the client strip. */
+  resources?: CardResource[]
 }
 
 /* ── ✎ LEFT CARD — BRANDSHARK ─────────────────────────────────────── */
@@ -75,6 +98,16 @@ export const BRANDSHARK_EXPERIENCE: ExperienceCard = {
     'Partnered with US client Verixxa to produce and deliver 20+ targeted AI video ad assets optimized for Instagram and social media performance.',
   ],
   emphasis: ['Runway', 'HeyGen', 'Grok Imagine'],
+
+  /* ── ✎ PASTE YOUR TWO GOOGLE DRIVE LINKS HERE ────────────────────── */
+  /* Drive ▸ Share ▸ General access ▸ "Anyone with the link" ▸ Viewer. */
+  resources: [
+    // AI-generated video ads, UGC videos, cinematic stories, etc.
+    { label: 'AI Videos', icon: PlayCircle, url: 'https://drive.google.com/drive/folders/1YpnedCKJCDjLeU4clOBwUqtHFgdQwek5?usp=sharing' }, // YOUR_AI_VIDEOS_DRIVE_LINK
+    // AI-generated thumbnails and visual creative assets.
+    { label: 'AI Thumbnails', icon: Images, url: 'https://drive.google.com/drive/folders/1koy_jS63b2Tytq5MBkgjbyrXPhhdCPsO?usp=sharing' }, // YOUR_AI_THUMBNAILS_DRIVE_LINK
+  ],
+  /* ────────────────────────────────────────────────────────────────── */
 
   clients: ['Kopiko', 'Popees India', 'Directoo', 'OWIS', 'Brushers', 'Verixxa'],
 }
