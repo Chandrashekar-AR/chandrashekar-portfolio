@@ -105,11 +105,11 @@ function CapabilityCard({ item, index }: { item: Capability; index: number }) {
 
 export default function MarqueeSection() {
   return (
-    <section id="core-capabilities" className="bg-[#0C0C0C] py-20 sm:py-24 md:py-32 overflow-hidden">
+    <section id="core-capabilities" className="bg-[#0C0C0C] py-14 sm:py-16 md:py-20 overflow-hidden">
       {/* Section heading — matches the "About me" heading style exactly */}
       <FadeIn delay={0} y={40}>
         <h2
-          className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-16 sm:mb-20 md:mb-28"
+          className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-10 sm:mb-12 md:mb-16"
           style={{
             fontSize: 'clamp(1.75rem, 5.5vw, 80px)',
             background: 'linear-gradient(180deg, #FEFCE8 0%, #FEF9C3 25%, #FDE047 50%, #FBBF24 75%, #F59E0B 100%)',

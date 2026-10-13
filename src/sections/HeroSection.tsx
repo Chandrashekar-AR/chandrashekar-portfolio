@@ -3,9 +3,9 @@ import FadeIn from '../components/FadeIn'
 
 export default function HeroSection() {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center py-20 sm:py-24 md:py-32" style={{ overflowX: 'clip' }}>
+    <section className="min-h-screen flex flex-col items-center justify-center py-14 sm:py-16 md:py-20" style={{ overflowX: 'clip' }}>
       {/* Main content area — min-h-screen + section padding keeps it clear of the fixed navbar without breaking centering */}
-      <div className="relative z-10 flex flex-col items-center gap-y-8 sm:gap-y-10 md:gap-y-12 w-full px-6">
+      <div className="relative z-10 flex flex-col items-center gap-y-6 sm:gap-y-7 md:gap-y-8 w-full px-6">
         {/* Name heading */}
         <FadeIn delay={0.15} y={40}>
           <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-center text-[4.5vw] min-[360px]:text-[4.8vw] sm:text-[5vw] md:text-[5.2vw] lg:text-[5.5vw]">

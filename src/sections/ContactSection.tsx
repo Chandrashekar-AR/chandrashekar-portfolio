@@ -67,12 +67,12 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative z-10 px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32"
+      className="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative z-10 px-5 sm:px-8 md:px-10 py-14 sm:py-16 md:py-20"
     >
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <FadeIn delay={0} y={40}>
-          <div className="text-center mb-16 sm:mb-20 md:mb-28">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16">
             <h2
               className="hero-heading font-black uppercase leading-none transmit-glow"
               style={{
@@ -87,7 +87,7 @@ export default function ContactSection() {
             </h2>
 
             {/* Availability status - moved between Transmit and Email */}
-            <div className="mt-10 p-5 sm:p-6 rounded-[20px] sm:rounded-[24px] border-2 border-[#FBBF24]/40 bg-[#0C0C0C] flex items-center justify-center gap-4 max-w-md mx-auto shadow-[0_0_20px_rgba(251,191,36,0.3)] shadow-[#FBBF24]/20">
+            <div className="mt-8 p-5 sm:p-6 rounded-[20px] sm:rounded-[24px] border-2 border-[#FBBF24]/40 bg-[#0C0C0C] flex items-center justify-center gap-4 max-w-md mx-auto shadow-[0_0_20px_rgba(251,191,36,0.3)] shadow-[#FBBF24]/20">
               <div className="relative flex-shrink-0">
                 <div className="w-3 h-3 rounded-full bg-yellow-400" />
                 <div className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-30" />
@@ -100,7 +100,7 @@ export default function ContactSection() {
             </div>
 
             {/* Email Display */}
-            <div className="mt-16 flex flex-col items-center gap-1">
+            <div className="mt-10 flex flex-col items-center gap-1">
               <Tooltip
                 content={
                   <div className="flex items-center gap-2 text-[#D7E2EA]/70">
