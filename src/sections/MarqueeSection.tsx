@@ -25,8 +25,8 @@ const POSTER_IMAGES = [
   'https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif',
 ]
 
-const CARD_WIDTH = 420
-const GAP = 12
+const CARD_WIDTH = 480
+const GAP = 24
 const ROW_WIDTH = (CARD_WIDTH + GAP) * 11
 
 function MarqueeCard({ src }: { src: string }) {
@@ -34,7 +34,7 @@ function MarqueeCard({ src }: { src: string }) {
     <motion.img
       src={src}
       alt=""
-      className="w-[420px] aspect-[9/16] rounded-2xl object-cover flex-shrink-0"
+      className="w-[480px] aspect-[16/9] rounded-2xl object-cover flex-shrink-0"
       loading="lazy"
       style={{ zIndex: 1 }}
       whileHover={{
@@ -84,7 +84,7 @@ function MarqueeRow({
   return (
     <motion.div
       animate={controls}
-      className="flex gap-3 will-change-transform"
+      className="flex gap-6 will-change-transform"
       style={{ width: `${ROW_WIDTH * 3}px`, x: initialOffset }}
     >
       {triple.map((url, i) => (

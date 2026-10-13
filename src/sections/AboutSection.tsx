@@ -34,7 +34,7 @@ const DECORATIVE_IMAGES = [
 ]
 
 const ABOUT_TEXT =
-  "With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!"
+  "With 9 months of experience as an AI Artist, I specialize in directing and producing AI-powered content, from cinematic microdramas and story-driven advertisements to engaging UGC-style videos. I love transforming creative ideas into compelling visual stories using cutting-edge generative AI tools. "
 
 export default function AboutSection() {
   return (
