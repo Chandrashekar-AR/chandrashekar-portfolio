@@ -87,36 +87,41 @@ function CardIdentity({ card }: { card: ExperienceCard }) {
   const [logoOk, setLogoOk] = useState(true)
   const showLogo = Boolean(card.logoUrl) && logoOk
 
+  /* Two-row grid — row 1 pairs the logo tile with the company name, row 2
+     holds the location under the name. `items-center` in row 1 therefore
+     optically centres the logo against the name itself (never against the
+     taller name+location block), so both cards stay uniformly aligned even
+     when the company name wraps to two or three lines. */
   return (
-    <header className="relative z-10 flex items-start gap-3 sm:gap-4">
-      <div
-        className={`relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-[14px] border-2 sm:h-14 sm:w-14 ${accent.tile}`}
-      >
-        <span className={`text-lg font-black uppercase sm:text-xl ${accent.tileText}`}>
-          {card.monogram}
-        </span>
-        {showLogo && (
-          <img
-            src={card.logoUrl}
-            alt={`${card.company} logo`}
-            onError={() => setLogoOk(false)}
-            className="absolute inset-0 h-full w-full bg-[#0C0C0C] object-contain p-1.5"
-          />
-        )}
-      </div>
-
-      <div className="min-w-0 flex-1">
-        <h3
-          className="hero-heading font-black uppercase leading-[0.95]"
-          style={{ fontSize: 'clamp(1.35rem, 3vw, 2.15rem)' }}
+    <header className="relative z-10 grid grid-cols-[auto_1fr] items-center gap-x-3 sm:gap-x-4">
+      {showLogo ? (
+        <img
+          src={card.logoUrl}
+          alt={`${card.company} logo`}
+          onError={() => setLogoOk(false)}
+          className="row-start-1 h-8 w-auto shrink-0 object-contain object-left sm:h-9 lg:h-11"
+        />
+      ) : (
+        <div
+          className={`relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-[14px] border-2 sm:h-14 sm:w-14 ${accent.tile}`}
         >
-          {card.company}
-        </h3>
-        <p className="mt-2 flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-[#D7E2EA]/45 sm:text-[11px]">
-          <MapPin size={11} className="shrink-0" aria-hidden="true" />
-          {card.location}
-        </p>
-      </div>
+          <span className={`text-lg font-black uppercase sm:text-xl ${accent.tileText}`}>
+            {card.monogram}
+          </span>
+        </div>
+      )}
+
+      <h3
+        className="col-start-2 row-start-1 min-w-0 hero-heading font-black uppercase leading-[0.95]"
+        style={{ fontSize: 'clamp(1.35rem, 3vw, 2.15rem)' }}
+      >
+        {card.company}
+      </h3>
+
+      <p className="col-start-2 row-start-2 mt-2 flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-[#D7E2EA]/45 sm:text-[11px]">
+        <MapPin size={11} className="shrink-0" aria-hidden="true" />
+        {card.location}
+      </p>
     </header>
   )
 }

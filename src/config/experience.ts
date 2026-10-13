@@ -89,7 +89,9 @@ export const BRANDSHARK_EXPERIENCE: ExperienceCard = {
   status: 'current',
 
   /* ── ✎ PASTE THE OFFICIAL BRANDSHARK LOGO HERE ───────────────────── */
-  logoUrl: '',
+  // Square 447x447 logo — fills the square tile edge-to-edge (object-contain),
+  // centered and vertically aligned with the company name.
+  logoUrl: 'https://i.postimg.cc/LX7MDNk6/0ef4289d-9294-42d5-ac2b-37ef69291c01.png',
   /* ────────────────────────────────────────────────────────────────── */
   monogram: 'B',
 
@@ -123,7 +125,10 @@ export const ADMITRA_EXPERIENCE: ExperienceCard = {
   status: 'past',
 
   /* ── ✎ PASTE THE OFFICIAL ADMITRA LOGO HERE ──────────────────────── */
-  logoUrl: '',
+  // Official ADMITRA lockup (arrow mark + wordmark), trimmed of its
+  // transparent padding → 776×202 (≈3.84:1). Rendered at a fixed height
+  // left of the company name, vertically centred with it.
+  logoUrl: '/admitra-logo.png',
   /* ────────────────────────────────────────────────────────────────── */
   monogram: 'A',
 
