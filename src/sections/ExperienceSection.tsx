@@ -273,8 +273,9 @@ function HighlightsGalleryBody({ card }: { card: ExperienceCard }) {
 
   return (
     <>
-      {/* Role + tenure */}
-      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+      {/* Role + tenure — stacked so the period sits on its own line,
+          between the role and the "Experience Highlights" heading. */}
+      <div className="flex flex-col gap-1.5">
         <span className="text-sm font-semibold uppercase tracking-wide text-[#D7E2EA] sm:text-base">
           {card.role}
         </span>
