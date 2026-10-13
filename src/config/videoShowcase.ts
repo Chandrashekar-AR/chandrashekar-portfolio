@@ -1,14 +1,16 @@
 /**
  * ══════════════════════════════════════════════════════════════════════
- *  PROJECT SHOWCASE CARDS (04 MONTRA, 05 LINCOLN, 03)
+ *  PROJECT SHOWCASE CARDS (04 MONTRA, 05 LINCOLN, 03 DIESEL DRAMA REEL)
  *  ▸ THIS IS THE ONLY FILE YOU NEED TO EDIT TO SET YOUR LINKS
  * ══════════════════════════════════════════════════════════════════════
  *
  *  Each entry in VIDEO_PROJECTS renders one card, top → bottom.
  *
- *  0) accent
- *     'cyan' (default, Montra) or 'purple' (Lincoln Pharma PA12) —
- *     drives the card border, eyebrow, play button and hover glow.
+ *  0) layout + accent
+ *     layout 'standard' (default) = horizontal 16:9 card (04, 05).
+ *     layout 'reel' = info panel + tall 9:16 visual (03 DIESEL DRAMA).
+ *     accent 'cyan' | 'purple' | 'magenta' drives the card border,
+ *     eyebrow, play button and hover glow.
  *
  *  1) thumbnailUrl
  *     Direct URL of your video thumbnail (a real frame from the video
@@ -33,12 +35,22 @@ export interface VideoDetail {
 }
 
 /** Accent theme applied to a card's borders, eyebrow, play button and hovers. */
-export type ShowcaseAccent = 'cyan' | 'purple'
+export type ShowcaseAccent = 'cyan' | 'purple' | 'magenta'
+
+/** Dashboard overlay shown on the vertical reel visual (layout: 'reel'). */
+export interface ShowcaseStat {
+  label: string
+  value: string
+  /** 0–100 fill of the accent progress bar — set on the retention row only. */
+  percent?: number
+}
 
 export interface VideoProject {
   /** Card index shown top-left (matches the other project cards). */
   number: string
-  /** Accent colour of the card — 'cyan' by default, 'purple' for Lincoln. */
+  /** Card layout — 'standard' (default) or 'reel' (tall 9:16 visual). */
+  layout?: 'standard' | 'reel'
+  /** Accent colour of the card — 'cyan' by default. */
   accent?: ShowcaseAccent
   /** Small label in the card header + chip on the thumbnail. */
   category: string
@@ -50,14 +62,21 @@ export interface VideoProject {
   title: string
   /** Word inside `title` rendered in the accent colour (must exist in `title`). */
   titleHighlight?: string
+  /** `layout: 'reel'` — headline part rendered in white (top line). */
+  headlineLead?: string
+  /** `layout: 'reel'` — headline part rendered in muted grey (second line). */
+  headlineTail?: string
   description: string
   thumbnailUrl: string
   videoUrl: string
+  /** Reel card: side-by-side metrics under the headline (label + big value). */
   details: VideoDetail[]
+  /** `layout: 'reel'` — dashboard overlays on the vertical visual. */
+  stats?: ShowcaseStat[]
 }
 
 const montraProject: VideoProject = {
-  number: '04',
+  number: '01',
   category: 'Launch Film',
   shortName: 'Montra Electric Eviator',
   kicker: 'Keynote Launch Reveal',
@@ -82,7 +101,7 @@ const montraProject: VideoProject = {
 
 /* ── ✎ CARD 05 — LINCOLN PHARMA PA12 (purple accent card) ────────── */
 export const LINCOLN_VIDEO_PROJECT: VideoProject = {
-  number: '05',
+  number: '02',
   accent: 'purple',
   category: 'Product Launch',
   shortName: 'Lincoln Pharma PA12',
@@ -107,27 +126,42 @@ export const LINCOLN_VIDEO_PROJECT: VideoProject = {
   ],
 }
 
-/* ── ✎ CARD 03 — edit the fields below with your own project ──────── */
-const project03: VideoProject = {
+/* ── ✎ CARD 03 — "DIESEL DRAMA" VIRAL REEL (vertical reel layout) ─── */
+export const DIESEL_DRAMA_REEL: VideoProject = {
   number: '03',
-  category: 'Launch Film',
+  layout: 'reel',
+  accent: 'magenta',
+  category: 'Viral Campaign',
   shortName: 'Montra Electric Eviator',
-  kicker: 'Keynote Launch Reveal',
-  title: 'MONTRA ELECTRIC EVIATOR — LAUNCH VIDEO',
-  titleHighlight: 'EVIATOR',
+  kicker: 'AI Video Specialist & Storyteller',
+  title: 'THE "DIESEL DRAMA" VIRAL REEL',
+  headlineLead: 'THE "DIESEL DRAMA"',
+  headlineTail: 'VIRAL REEL',
   description:
-    'Produced the keynote launch reveal video, managing end-to-end production from AI footage generation using Kling AI to final editing and big-screen projection compositing.',
+    'Orchestrated the narrative pipeline for a high-impact localized social campaign. Seamlessly integrated AI-generated assets with platform-specific pacing to maximize retention and shareability across demographics.',
 
   /* ── ✎ PASTE YOUR TWO LINKS HERE ─────────────────────────────────── */
-  thumbnailUrl: 'https://drive.google.com/thumbnail?id=1rlcxqjFkMZ2NTLB-W208QxzWQfjh_kVa&sz=w1600',
-  videoUrl: 'https://drive.google.com/file/d/1rlcxqjFkMZ2NTLB-W208QxzWQfjh_kVa/view?usp=sharing',
+  // 1) thumbnailUrl — the campaign thumbnail image YOU provide (a direct
+  //    image URL or an imported asset path). The Drive *sharing* page URL
+  //    is NOT an image — leave '' until you add the real thumbnail.
+  // 2) videoUrl — the Google Drive shareable link of the campaign video.
+  //    Clicking the thumbnail / play button opens it in a new tab.
+  thumbnailUrl: '',
+  videoUrl: '',
   /* ────────────────────────────────────────────────────────────────── */
 
+  // Performance metrics — rendered side by side under the headline.
   details: [
-    { label: 'Brand Scope', value: 'Premium EV Reveal' },
-    { label: 'Deliverable', value: 'Keynote Projection' },
-    { label: 'Resolution', value: '4K Upscaled' },
-    { label: 'Role', value: 'AI Video Producer & Editor', accent: true },
+    { label: 'Total Reach', value: '2.2M+' },
+    { label: 'Engagement', value: '21%' },
+  ],
+
+  // Dashboard overlays on the vertical visual (reference-provided values —
+  // `percent` drives the thin magenta progress bar).
+  stats: [
+    { label: 'Retention Rate', value: '85.2%', percent: 85.2 },
+    { label: 'Likes', value: '36K' },
+    { label: 'Shares', value: '8k' },
   ],
 }
 
@@ -135,7 +169,7 @@ const project03: VideoProject = {
 export const VIDEO_PROJECTS: VideoProject[] = [
   montraProject,
   LINCOLN_VIDEO_PROJECT,
-  project03,
+  DIESEL_DRAMA_REEL,
 ]
 
 export const MONTRA_VIDEO_PROJECT = montraProject

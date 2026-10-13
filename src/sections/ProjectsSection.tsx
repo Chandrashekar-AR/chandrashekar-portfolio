@@ -1,6 +1,14 @@
 import FadeIn from '../components/FadeIn'
+import ReelShowcaseCard from '../components/ReelShowcaseCard'
 import VideoShowcaseCard from '../components/VideoShowcaseCard'
 import { VIDEO_PROJECTS } from '../config/videoShowcase'
+import type { VideoProject } from '../config/videoShowcase'
+
+/** Picks the card component that matches the project's configured layout. */
+function ProjectCard({ project }: { project: VideoProject }) {
+  if (project.layout === 'reel') return <ReelShowcaseCard project={project} />
+  return <VideoShowcaseCard project={project} />
+}
 
 export default function ProjectsSection() {
   return (
@@ -22,8 +30,9 @@ export default function ProjectsSection() {
           </h2>
         </FadeIn>
 
-        {/* Featured video showcase cards (04 MONTRA, 05 LINCOLN, 03) —
-            links + accent themes are configured in src/config/videoShowcase.ts */}
+        {/* Featured video showcase cards (04 MONTRA, 05 LINCOLN,
+            03 DIESEL DRAMA REEL) — links, metrics and accent themes are
+            configured in src/config/videoShowcase.ts */}
         {VIDEO_PROJECTS.map((project, index) => (
           <FadeIn
             key={project.number}
@@ -31,7 +40,7 @@ export default function ProjectsSection() {
             y={40}
             className={index === 0 ? '' : 'mt-12 sm:mt-16 md:mt-24'}
           >
-            <VideoShowcaseCard project={project} />
+            <ProjectCard project={project} />
           </FadeIn>
         ))}
       </div>

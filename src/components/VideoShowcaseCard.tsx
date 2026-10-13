@@ -99,6 +99,32 @@ const ACCENTS: Record<ShowcaseAccent, AccentTokens> = {
       'border-purple-400/50 text-purple-400 shadow-[0_0_18px_rgba(192,132,252,0.25)]',
     roleLabel: 'text-purple-400/80',
   },
+  magenta: {
+    card: 'border-[#EC4899]/30 shadow-[0_0_80px_rgba(236,72,153,0.06)]',
+    category: 'text-[#EC4899]/90',
+    watch:
+      'border-[#EC4899]/50 bg-[#EC4899]/10 text-[#F9A8D4] hover:bg-[#EC4899] hover:text-black hover:shadow-[0_0_30px_rgba(236,72,153,0.45)]',
+    watchDisabled: 'border-[#EC4899]/25 text-[#F9A8D4]/50',
+    frame: 'border-[#EC4899]/25 group-hover:border-[#EC4899]/70',
+    frameGlow: 'group-hover:shadow-[0_0_40px_rgba(236,72,153,0.15)]',
+    dot: 'bg-[#EC4899] shadow-[0_0_10px_2px_rgba(236,72,153,0.7)]',
+    chip: 'border-[#EC4899]/30 text-[#F9A8D4]',
+    play:
+      'border-[#EC4899]/70 bg-[#EC4899]/15 shadow-[0_0_25px_rgba(236,72,153,0.45)]',
+    playHover:
+      'group-hover:bg-[#EC4899]/30 group-hover:shadow-[0_0_45px_rgba(236,72,153,0.75)]',
+    playRing: 'border-[#EC4899]/40',
+    playIcon: 'fill-pink-100 text-pink-100',
+    focus: 'focus-visible:outline-[#EC4899]',
+    eyebrowRule: 'bg-[#EC4899]/50',
+    eyebrow: 'text-[#EC4899]',
+    titleWord: 'text-[#EC4899]',
+    titleWordColor: '#ec4899',
+    rolePanel: 'border-[#EC4899]/30 bg-[#EC4899]/[0.07]',
+    roleIcon:
+      'border-[#EC4899]/50 text-[#EC4899] shadow-[0_0_18px_rgba(236,72,153,0.25)]',
+    roleLabel: 'text-[#EC4899]/80',
+  },
 }
 
 /** Renders the project title with the configured word in the card accent. */
