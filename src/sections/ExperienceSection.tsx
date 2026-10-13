@@ -1,86 +1,270 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { MapPin } from 'lucide-react'
 import FadeIn from '../components/FadeIn'
+import { BRANDSHARK_EXPERIENCE, ADMITRA_EXPERIENCE } from '../config/experience'
+import type { ExperienceCard } from '../config/experience'
 
-interface TimelineItem {
-  id: string
-  role: string
-  company: string
-  period: string
-  type: string
-  status: string
-  description: string
-  highlights: string[]
-  tags: string[]
+/**
+ * Journey section — two experience cards (Brandshark | AdMitra).
+ * Copy is sourced verbatim from the resume (src/config/experience.ts);
+ * logos and campaign artwork live in that same config file.
+ */
+
+/* Literal class strings so Tailwind's JIT picks every one of them up. */
+const ACCENT = {
+  yellow: {
+    card:
+      'border-[#FBBF24]/25 shadow-[0_0_50px_rgba(251,191,36,0.08)] hover:border-[#FBBF24]/55 hover:shadow-[0_0_60px_rgba(251,191,36,0.16)]',
+    wash: 'bg-[radial-gradient(120%_120%_at_10%_0%,rgba(251,191,36,0.12),transparent_62%)]',
+    tile: 'border-[#FBBF24]/40 bg-[#FBBF24]/10',
+    tileText: 'text-[#FDE047]',
+    dot: 'bg-[#FBBF24] shadow-[0_0_10px_rgba(251,191,36,0.75)]',
+    dotSoft: 'bg-[#FBBF24]/45',
+    rail: 'from-[#FBBF24]/70 via-[#FBBF24]/25',
+    bullet: 'bg-[#FBBF24] shadow-[0_0_8px_rgba(251,191,36,0.7)]',
+    metric: 'font-semibold text-[#FDE047]',
+    pill: 'border-[#FBBF24]/30 bg-[#FBBF24]/10 text-[#FDE68A]',
+  },
+  blue: {
+    card:
+      'border-[#3B82F6]/25 shadow-[0_0_50px_rgba(59,130,246,0.07)] hover:border-[#3B82F6]/55 hover:shadow-[0_0_60px_rgba(59,130,246,0.15)]',
+    wash: 'bg-[radial-gradient(120%_120%_at_10%_0%,rgba(59,130,246,0.12),transparent_62%)]',
+    tile: 'border-[#3B82F6]/40 bg-[#3B82F6]/10',
+    tileText: 'text-[#93C5FD]',
+    dot: 'bg-[#3B82F6] shadow-[0_0_10px_rgba(59,130,246,0.75)]',
+    dotSoft: 'bg-[#3B82F6]/45',
+    rail: 'from-[#3B82F6]/70 via-[#3B82F6]/25',
+    bullet: 'bg-[#3B82F6] shadow-[0_0_8px_rgba(59,130,246,0.7)]',
+    metric: 'font-semibold text-[#93C5FD]',
+    pill: 'border-[#3B82F6]/30 bg-[#3B82F6]/10 text-[#93C5FD]',
+  },
+} as const
+
+const escapeRegex = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+
+/** Splits a resume bullet into tokens, accenting metrics and emphasis words. */
+function HighlightText({ card, text }: { card: ExperienceCard; text: string }) {
+  const accent = ACCENT[card.accent]
+  const words = card.emphasis ?? []
+  const pattern = new RegExp(`(${[...words.map(escapeRegex), '\\d+\\+'].join('|')})`, 'g')
+
+  return (
+    <>
+      {text.split(pattern).map((part, index) => {
+        if (/^\d+\+$/.test(part)) {
+          return (
+            <span key={index} className={accent.metric}>
+              {part}
+            </span>
+          )
+        }
+        if (words.includes(part)) {
+          return (
+            <span key={index} className="font-medium text-[#D7E2EA]">
+              {part}
+            </span>
+          )
+        }
+        return <span key={index}>{part}</span>
+      })}
+    </>
+  )
 }
 
-const TIMELINE: TimelineItem[] = [
-  {
-    id: 'creative-head-intern',
-    role: 'Creative Head Intern',
-    company: 'High-Growth Startup',
-    period: '2025 — Present',
-    type: 'Primary Role',
-    status: 'current',
-    description:
-      'Leading end-to-end creative direction for brand campaigns, digital content strategy, and AI-augmented production workflows. Overseeing visual identity evolution, asset pipeline architecture, and cross-functional creative collaboration.',
-    highlights: [
-      'Architected AI-driven content pipeline producing 4K cinematic assets at 10× traditional speed',
-      'Led brand identity refresh spanning 40+ touchpoints across digital and physical channels',
-      'Directed commercial storyboards for 5+ major product launches with cinematic shot design',
-      'Established generative media workflows using VEO 3, Imagen 4, and Runway ML',
-    ],
-    tags: ['Brand Direction', 'AI Production', 'Team Leadership', 'Campaign Strategy'],
-  },
-  {
-    id: 'creative-strategist',
-    role: 'Creative Strategist',
-    company: 'Freelance & Consulting',
-    period: '2024 — 2025',
-    type: 'Strategy & Consulting',
-    status: 'past',
-    description:
-      'Delivered bespoke creative strategies for brands seeking elevated visual identity, content differentiation, and social media performance. Specialized in moodboard development, content architecture, and multimedia asset production.',
-    highlights: [
-      'Produced 200+ branded content assets for clients across fashion, F&B, and technology sectors',
-      'Designed comprehensive brand style guides ensuring consistency across all channels',
-      'Developed automated content generation workflows cutting production time by 60%',
-      'Consulted on social media visual strategy achieving 3× engagement uplift',
-    ],
-    tags: ['Brand Consulting', 'Content Strategy', 'Visual Identity', 'Multimedia Production'],
-  },
-  {
-    id: 'multimedia-producer',
-    role: 'Multimedia Content Producer',
-    company: 'Independent Projects',
-    period: '2023 — 2024',
-    type: 'Production',
-    status: 'past',
-    description:
-      'Hands-on production of video, motion graphics, and visual content for digital platforms. Built foundational expertise in cinematic storytelling, motion design, and the creative use of emerging AI generative tools.',
-    highlights: [
-      'Created and edited 50+ long-form and short-form video productions for digital audiences',
-      'Developed motion graphic templates reducing future production cycles by 40%',
-      'Pioneered early adoption of AI image generation tools for concept visualization',
-      'Built personal brand identity system establishing distinctive visual signature',
-    ],
-    tags: ['Video Production', 'Motion Graphics', 'Storytelling', 'AI Tools'],
-  },
-]
+/** Company identity: logo (or monogram fallback) + name + location. */
+function CardIdentity({ card }: { card: ExperienceCard }) {
+  const accent = ACCENT[card.accent]
+  const [logoOk, setLogoOk] = useState(true)
+  const showLogo = Boolean(card.logoUrl) && logoOk
+
+  return (
+    <header className="relative z-10 flex items-start gap-3 sm:gap-4">
+      <div
+        className={`relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-[14px] border-2 sm:h-14 sm:w-14 ${accent.tile}`}
+      >
+        <span className={`text-lg font-black uppercase sm:text-xl ${accent.tileText}`}>
+          {card.monogram}
+        </span>
+        {showLogo && (
+          <img
+            src={card.logoUrl}
+            alt={`${card.company} logo`}
+            onError={() => setLogoOk(false)}
+            className="absolute inset-0 h-full w-full bg-[#0C0C0C] object-contain p-1.5"
+          />
+        )}
+      </div>
+
+      <div className="min-w-0 flex-1">
+        <h3
+          className="hero-heading font-black uppercase leading-[0.95]"
+          style={{ fontSize: 'clamp(1.35rem, 3vw, 2.15rem)' }}
+        >
+          {card.company}
+        </h3>
+        <p className="mt-2 flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-[#D7E2EA]/45 sm:text-[11px]">
+          <MapPin size={11} className="shrink-0" aria-hidden="true" />
+          {card.location}
+        </p>
+      </div>
+    </header>
+  )
+}
+
+/** Compact client / brand strip pinned to the bottom of a card. */
+function ClientStrip({ card }: { card: ExperienceCard }) {
+  const accent = ACCENT[card.accent]
+  if (!card.clients || card.clients.length === 0) return null
+
+  return (
+    <footer className="relative z-10 mt-6 border-t border-[#D7E2EA]/10 pt-4 sm:pt-5">
+      <span className="font-mono text-[10px] uppercase tracking-widest text-[#D7E2EA]/40">
+        Clients
+      </span>
+      <ul className="mt-3 flex flex-wrap gap-2">
+        {card.clients.map((client) => (
+          <li
+            key={client}
+            className={`rounded-full border px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-wider sm:text-[10px] ${accent.pill}`}
+          >
+            {client}
+          </li>
+        ))}
+      </ul>
+    </footer>
+  )
+}
+
+/** Left card body — employment + achievements as a vertical timeline. */
+function TimelineBody({ card }: { card: ExperienceCard }) {
+  const accent = ACCENT[card.accent]
+
+  return (
+    <div className="relative mt-6">
+      <span
+        aria-hidden="true"
+        className={`absolute bottom-3 left-[6px] top-3 w-px bg-gradient-to-b to-transparent ${accent.rail}`}
+      />
+
+      <ol className="relative flex flex-col gap-6 sm:gap-7">
+        {/* Employment node */}
+        <li className="relative pl-6 sm:pl-7">
+          <span
+            aria-hidden="true"
+            className={`absolute left-0 top-1.5 h-3 w-3 rounded-full ${accent.dot}`}
+          />
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <h4 className="text-sm font-semibold uppercase tracking-wide text-[#D7E2EA] sm:text-base">
+              {card.role}
+            </h4>
+            {card.status === 'current' && (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-green-500/30 bg-green-500/5 px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-widest text-green-400">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-400 motion-reduce:animate-none" />
+                Active
+              </span>
+            )}
+          </div>
+          <p className="mt-1.5 font-mono text-[10px] uppercase tracking-widest text-[#D7E2EA]/45 sm:text-[11px]">
+            {card.period}
+          </p>
+        </li>
+
+        {/* Achievement nodes */}
+        {card.highlights.map((highlight, index) => (
+          <li key={index} className="relative pl-6 sm:pl-7">
+            <span
+              aria-hidden="true"
+              className={`absolute left-[1px] top-[5px] h-2 w-2 rounded-full ${accent.dotSoft}`}
+            />
+            <p className="text-[13px] font-light leading-relaxed text-[#D7E2EA]/65 sm:text-sm">
+              <HighlightText card={card} text={highlight} />
+            </p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  )
+}
+
+/** Right card body — highlights column + campaign gallery + client badges. */
+function HighlightsGalleryBody({ card }: { card: ExperienceCard }) {
+  const accent = ACCENT[card.accent]
+  const gallery = card.gallery ?? []
+
+  return (
+    <>
+      {/* Role + tenure */}
+      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <span className="text-sm font-semibold uppercase tracking-wide text-[#D7E2EA] sm:text-base">
+          {card.role}
+        </span>
+        <span className="font-mono text-[10px] uppercase tracking-widest text-[#D7E2EA]/45 sm:text-[11px]">
+          {card.period}
+        </span>
+      </div>
+
+      <div className="mt-5 flex flex-col gap-6 xl:flex-row xl:gap-5">
+        {/* Experience highlights — readable text column */}
+        <div className="min-w-0 flex-1">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-[#D7E2EA]/40">
+            Experience Highlights
+          </span>
+          <ul className="mt-3 flex flex-col gap-3.5">
+            {card.highlights.map((highlight, index) => (
+              <li key={index} className="flex items-start gap-3">
+                <span
+                  aria-hidden="true"
+                  className={`mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full ${accent.bullet}`}
+                />
+                <p className="text-[13px] font-light leading-relaxed text-[#D7E2EA]/65 sm:text-sm">
+                  <HighlightText card={card} text={highlight} />
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Campaign visual gallery */}
+        <div className="w-full shrink-0 xl:w-[44%]">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-[#D7E2EA]/40">
+            Campaign Visuals
+          </span>
+          <div className="mt-3 grid grid-cols-2 gap-2 sm:gap-2.5">
+            {gallery.map((item) => (
+              <figure
+                key={item.brand}
+                className="group/tile relative aspect-[4/3] overflow-hidden rounded-[16px] border border-[#D7E2EA]/10 bg-[#D7E2EA]/[0.04]"
+              >
+                {item.imageUrl.trim().length > 0 && (
+                  <img
+                    src={item.imageUrl}
+                    alt={`${item.brand} campaign visual`}
+                    loading="lazy"
+                    onError={(event) => {
+                      event.currentTarget.style.display = 'none'
+                    }}
+                    className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover/tile:scale-105 motion-reduce:group-hover/tile:scale-100"
+                  />
+                )}
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-2.5 pb-1.5 pt-5 font-mono text-[8px] uppercase tracking-wider text-[#D7E2EA]/85 sm:text-[9px]">
+                  {item.brand}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
 
 export default function ExperienceSection() {
-  const [expandedId, setExpandedId] = useState<string | null>('creative-head-intern')
-
-  const toggleExpand = (id: string) => {
-    setExpandedId(expandedId === id ? null : id)
-  }
-
   return (
     <section
       id="experience"
       className="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative z-10 px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32"
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <FadeIn delay={0} y={40}>
           <h2
@@ -97,110 +281,39 @@ export default function ExperienceSection() {
           </h2>
         </FadeIn>
 
-        {/* Timeline list */}
-        <div className="relative pl-6 sm:pl-10 md:pl-12 border-l border-[#D7E2EA]/20 flex flex-col gap-16 md:gap-20">
-          {TIMELINE.map((item, idx) => {
-            const isExpanded = expandedId === item.id
+        {/* Two experience cards — Brandshark (yellow) | AdMitra (blue) */}
+        <div className="grid grid-cols-1 items-stretch gap-5 sm:gap-6 md:grid-cols-2">
+          {[
+            { card: BRANDSHARK_EXPERIENCE, body: 'timeline' as const, delay: 0.1 },
+            { card: ADMITRA_EXPERIENCE, body: 'gallery' as const, delay: 0.2 },
+          ].map(({ card, body, delay }) => {
+            const accent = ACCENT[card.accent]
+
             return (
-              <div key={item.id} className="relative">
-                {/* Timeline dot */}
-                <div className="absolute -left-[31px] sm:-left-[47px] md:-left-[55px] top-6 z-10 flex items-center justify-center">
-                  <div
-                    className={`w-4 h-4 rounded-full border-2 bg-[#0C0C0C] transition-all duration-300
-                      ${isExpanded ? 'border-[#D7E2EA] scale-125' : 'border-[#D7E2EA]/30'}`}
+              <FadeIn key={card.id} delay={delay} y={30} className="h-full">
+                <article
+                  aria-label={`${card.company} — ${card.role}`}
+                  className={`group relative flex h-full flex-col overflow-hidden rounded-[30px] border-2 bg-[#0C0C0C] p-6 transition-[border-color,box-shadow] duration-300 ease-out sm:p-8 ${accent.card}`}
+                >
+                  {/* Subtle ambient wash in the card's accent colour */}
+                  <span
+                    aria-hidden="true"
+                    className={`pointer-events-none absolute inset-0 ${accent.wash}`}
                   />
-                </div>
 
-                <FadeIn delay={idx * 0.1} y={30}>
-                  <div
-                    onClick={() => toggleExpand(item.id)}
-                    className={`group cursor-pointer rounded-[30px] border-2 p-6 sm:p-8 md:p-10 transition-all duration-400 select-none
-                      ${isExpanded
-                        ? 'border-[#D7E2EA] bg-[#0C0C0C]'
-                        : 'border-[#D7E2EA]/10 hover:border-[#D7E2EA]/40'
-                      }`}
-                  >
-                    {/* Header info */}
-                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
-                      <div>
-                        <div className="flex items-center gap-3 mb-2 flex-wrap">
-                          <h3 className="font-semibold text-lg sm:text-xl uppercase tracking-wider text-[#D7E2EA]">
-                            {item.role}
-                          </h3>
-                          {item.status === 'current' && (
-                            <span className="flex items-center gap-1.5 text-[10px] font-mono tracking-widest uppercase border border-green-500/30 text-green-400 bg-green-500/5 px-2.5 py-0.5 rounded-full">
-                              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                              Active
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-[#D7E2EA]/60 text-sm font-medium">
-                          {item.company}
-                        </p>
-                      </div>
+                  <CardIdentity card={card} />
 
-                      <div className="flex flex-col sm:items-end gap-1 flex-shrink-0">
-                        <span className="text-xs font-mono text-[#D7E2EA]/40 uppercase tracking-widest">
-                          {item.period}
-                        </span>
-                        <span className="text-[10px] font-mono text-[#D7E2EA]/30 uppercase tracking-wider">
-                          {item.type}
-                        </span>
-                      </div>
-                    </div>
-
-                    <p className="text-[#D7E2EA]/60 text-sm sm:text-base leading-relaxed font-light mb-6">
-                      {item.description}
-                    </p>
-
-                    {/* Show toggle text */}
-                    <div className="flex items-center gap-2 text-xs font-mono text-[#D7E2EA]/40 uppercase group-hover:text-[#D7E2EA]/80 transition-colors">
-                      <span>{isExpanded ? 'Collapse highlights —' : 'View highlights +'}</span>
-                    </div>
-
-                    {/* Accordion content */}
-                    <AnimatePresence initial={false}>
-                      {isExpanded && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-                          className="overflow-hidden"
-                        >
-                          <div className="border-t border-[#D7E2EA]/10 mt-8 pt-8">
-                            <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#D7E2EA]/40 mb-4">
-                              Key Highlights
-                            </h4>
-                            <ul className="flex flex-col gap-3 mb-8">
-                              {item.highlights.map((highlight, hIdx) => (
-                                <li
-                                  key={hIdx}
-                                  className="flex items-start gap-3 text-sm text-[#D7E2EA]/70 leading-relaxed font-light"
-                                >
-                                  <span className="text-[#D7E2EA]/40 select-none mt-0.5">•</span>
-                                  <span>{highlight}</span>
-                                </li>
-                              ))}
-                            </ul>
-
-                            <div className="flex flex-wrap gap-2">
-                              {item.tags.map((tag) => (
-                                <span
-                                  key={tag}
-                                  className="text-[10px] font-mono tracking-wider text-[#D7E2EA]/50 border border-[#D7E2EA]/15 bg-[#D7E2EA]/5 px-3 py-1.5 rounded-full uppercase"
-                                >
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                  <div className="relative z-10 mt-5 flex-1 border-t border-[#D7E2EA]/10 pt-5">
+                    {body === 'timeline' ? (
+                      <TimelineBody card={card} />
+                    ) : (
+                      <HighlightsGalleryBody card={card} />
+                    )}
                   </div>
-                </FadeIn>
-              </div>
+
+                  <ClientStrip card={card} />
+                </article>
+              </FadeIn>
             )
           })}
         </div>

@@ -24,6 +24,17 @@ The **Credentials** section top card is driven by one file:
 
 The card shows a red glow only on hover (and on keyboard focus).
 
+## Journey section (Brandshark + AdMitra experience cards)
+
+The two experience cards in the **Journey** section are driven by one file:
+
+- `src/config/experience.ts` — resume-sourced copy plus asset slots:
+  - `logoUrl` — official company logo (empty = typographic monogram fallback)
+  - `gallery[].imageUrl` — real campaign artwork for the AdMitra card
+    (Montra Electric and Lincoln Pharma reuse the Drive frames from
+    `videoShowcase.ts`; Ampere and EkoTejas are yours to fill in)
+  - `highlights` / `emphasis` / `clients` — text taken verbatim from the resume
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
