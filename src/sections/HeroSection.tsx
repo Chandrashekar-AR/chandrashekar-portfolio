@@ -61,7 +61,7 @@ export default function HeroSection() {
               }}
             >
               <Download size={15} className="transition-transform duration-300 group-hover:translate-y-0.5" />
-              [Download Resume]
+              Download Resume
             </a>
 
             {/* Secondary — Access portfolio (smooth-scrolls to the About section) */}
@@ -69,7 +69,7 @@ export default function HeroSection() {
               href="#about"
               className="group inline-flex items-center gap-2.5 border border-zinc-800 font-mono text-zinc-300 text-[11px] sm:text-xs uppercase tracking-widest px-6 py-3.5 rounded-full transition-all duration-300 hover:border-zinc-600 hover:text-white"
             >
-              [Access Portfolio]
+              Access Portfolio
               <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
             </a>
           </div>
